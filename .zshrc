@@ -14,7 +14,7 @@ DISABLE_UPDATE_PROMPT="true"
 COMPLETION_WAITING_DOTS="true"
 HIST_STAMPS="dd.mm.yyyy"
 
-plugins=(compleat git gradle kubectl zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(compleat git gradle kubectl sudo zsh-autosuggestions zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
