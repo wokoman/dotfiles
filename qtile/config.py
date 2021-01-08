@@ -24,20 +24,19 @@ keys = [
         desc="Move window focus to other window"),
 
     # Move windows
-    Key([mod, "control"], "h", lazy.layout.shuffle_left(),
+    Key([mod, "shift"], "h", lazy.layout.shuffle_left(),
         desc="Move window to the left"),
-    Key([mod, "control"], "l", lazy.layout.shuffle_right(),
+    Key([mod, "shift"], "l", lazy.layout.shuffle_right(),
         desc="Move window to the right"),
-    Key([mod, "control"], "j", lazy.layout.shuffle_down(),
+    Key([mod, "shift"], "j", lazy.layout.shuffle_down(),
         desc="Move window down"),
-    Key([mod, "control"], "k", lazy.layout.shuffle_up(), desc="Move window up"),
+    Key([mod, "shift"], "k", lazy.layout.shuffle_up(), desc="Move window up"),
 
     # Grow windows
-    Key([mod, "shift"], "h", lazy.layout.grow(), lazy.layout.increase_nmaster(),
+    Key([mod, "control"], "h", lazy.layout.grow(), lazy.layout.increase_nmaster(),
         desc="Expand window (MonadTall), increase number in master pane (Tile)"),
-    Key([mod, "shift"], "l", lazy.layout.shrink(), lazy.layout.decrease_nmaster(),
+    Key([mod, "control"], "l", lazy.layout.shrink(), lazy.layout.decrease_nmaster(),
         desc="Shrink window (MonadTall), decrease number in master pane (Tile)"),
-    Key([mod], "n", lazy.layout.normalize(), desc="Reset all window sizes"),
 
     # Toggle between different layouts
     Key([mod], "space", lazy.next_layout(), desc="Toggle between layouts"),
