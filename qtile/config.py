@@ -110,16 +110,16 @@ colors = [["#292d3e", "#292d3e"], # panel background
           ["#434758", "#434758"], # background for current screen tab
           ["#ffffff", "#ffffff"], # font color for group names
           ["#ead61c", "#ead61c"], # border line color for current tab
-          ["#292d3e", "#292d3e"], # border line color for other tab and odd widgets
-          ["#a47c48", "#a47c48"], # color for the even widgets
+          ["#594327", "#594327"], # border line color for other tab and odd widgets
+          ["#7C5E36", "#7C5E36"], # color for the even widgets
           ["#d7c797", "#d7c797"]] # window name
 
 prompt = "{0}@{1}: ".format(os.environ["USER"], socket.gethostname())
 
 widget_defaults = dict(
-    font='IBM Plex Sans SemiBold',
-    fontsize=12,
-    padding=6,
+    font='IBM Plex Mono SemiBold',
+    fontsize=15,
+    padding=3,
     background=colors[2]
 )
 extension_defaults = widget_defaults.copy()
@@ -135,8 +135,7 @@ screens = [
                     background = colors[0]
                     ),
                 widget.GroupBox(
-                    font="IBM Plex Sans Bold",
-                    fontsize = 9,
+                    fontsize = 12,
                     margin_y = 3,
                     margin_x = 0,
                     padding_y = 5,
@@ -172,13 +171,15 @@ screens = [
                     padding = 0
                     ),
                 widget.TextBox(
-                    text = '',
-                    background = colors[4],
+                    font = 'MesloLGS NF',
+                    text = '',
+                    background = colors[0],
                     foreground = colors[5],
                     padding = 0,
                     fontsize = 37
                     ),
                 widget.TextBox(
+                    font = 'MesloLGS NF',
                     text = " 🖬",
                     foreground = colors[2],
                     background = colors[5],
@@ -192,7 +193,8 @@ screens = [
                     padding = 5
                     ),
                 widget.TextBox(
-                    text='',
+                    font = 'MesloLGS NF',
+                    text='',
                     background = colors[5],
                     foreground = colors[4],
                     padding = 0,
@@ -206,7 +208,8 @@ screens = [
                     padding = 5
                     ),
                 widget.TextBox(
-                    text = '',
+                    font = 'MesloLGS NF',
+                    text = '',
                     background = colors[4],
                     foreground = colors[5],
                     padding = 0,
@@ -224,7 +227,8 @@ screens = [
                     padding = 5
                     ),
                 widget.TextBox(
-                    text = '',
+                    font = 'MesloLGS NF',
+                    text = '',
                     background = colors[5],
                     foreground = colors[4],
                     padding = 0,
@@ -243,7 +247,8 @@ screens = [
                     padding = 5
                     ),
                 widget.TextBox(
-                    text = '',
+                    font = 'MesloLGS NF',
+                    text = '',
                     background = colors[4],
                     foreground = colors[5],
                     padding = 0,
@@ -255,7 +260,7 @@ screens = [
                     configured_keyboards = ['us','cz']
                     ),
                 widget.TextBox(
-                    text = '',
+                    text = '',
                     background = colors[5],
                     foreground = colors[4],
                     padding = 0,
@@ -266,7 +271,7 @@ screens = [
                     background = colors[4],
                     ),
                 widget.TextBox(
-                    text = '',
+                    text = '',
                     background = colors[4],
                     foreground = colors[5],
                     padding = 0,
