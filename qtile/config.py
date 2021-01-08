@@ -216,10 +216,11 @@ screens = [
                     fontsize = 37
                     ),
                 widget.TextBox(
-                    text = " Vol:",
+                    text = "",
                     foreground = colors[2],
                     background = colors[5],
-                    padding = 0
+                    padding = 0,
+                    fontsize = 22
                     ),
                 widget.Volume(
                     foreground = colors[2],
@@ -266,6 +267,13 @@ screens = [
                     padding = 0,
                     fontsize = 37
                     ),
+                widget.TextBox(
+                    text = " ",
+                    foreground = colors[2],
+                    background = colors[4],
+                    padding = 0,
+                    fontsize = 11
+                    ),
                 widget.Battery(
                     foreground = colors[2],
                     background = colors[4],
@@ -282,16 +290,29 @@ screens = [
                     foreground = colors[2],
                     background = colors[5],
                     ),
-                widget.Systray(
-                    padding = 5,
-                    foreground = colors[2],
-                    background = colors[5]
-                    ),
                 widget.Sep(
                     linewidth = 0,
                     padding = 6,
                     foreground = colors[2],
                     background = colors[5]
+                    ),
+                widget.TextBox(
+                    text = '',
+                    background = colors[5],
+                    foreground = colors[4],
+                    padding = 0,
+                    fontsize = 37
+                    ),
+                widget.Systray(
+                    padding = 5,
+                    foreground = colors[2],
+                    background = colors[4]
+                    ),
+                widget.Sep(
+                    linewidth = 0,
+                    padding = 6,
+                    foreground = colors[2],
+                    background = colors[4]
                     ),
             ],
             24,
