@@ -209,8 +209,8 @@ screens = [
                 widget.TextBox(
                     font = 'MesloLGS NF',
                     text = '',
-                    background = colors[4],
                     foreground = colors[5],
+                    background = colors[4],
                     padding = 0,
                     fontsize = 37
                     ),
@@ -226,74 +226,62 @@ screens = [
                     background = colors[5],
                     padding = 5
                     ),
+                # widget.TextBox(
+                #     font = 'MesloLGS NF',
+                #     text = '',
+                #     background = colors[5],
+                #     foreground = colors[4],
+                #     padding = 0,
+                #     fontsize = 37
+                #     ),
+                # widget.CurrentLayoutIcon(
+                #     custom_icon_paths = [os.path.expanduser("~/.config/qtile/icons")],
+                #     foreground = colors[0],
+                #     background = colors[4],
+                #     padding = 0,
+                #     scale = 0.7
+                #     ),
+                # widget.CurrentLayout(
+                #     foreground = colors[2],
+                #     background = colors[4],
+                #     padding = 5
+                #     ),
                 widget.TextBox(
                     font = 'MesloLGS NF',
                     text = '',
-                    background = colors[5],
                     foreground = colors[4],
-                    padding = 0,
-                    fontsize = 37
-                    ),
-                widget.CurrentLayoutIcon(
-                    custom_icon_paths = [os.path.expanduser("~/.config/qtile/icons")],
-                    foreground = colors[0],
-                    background = colors[4],
-                    padding = 0,
-                    scale = 0.7
-                    ),
-                widget.CurrentLayout(
-                    foreground = colors[2],
-                    background = colors[4],
-                    padding = 5
-                    ),
-                widget.TextBox(
-                    font = 'MesloLGS NF',
-                    text = '',
-                    background = colors[4],
-                    foreground = colors[5],
+                    background = colors[5],
                     padding = 0,
                     fontsize = 37
                     ),
                 widget.KeyboardLayout(
                     foreground = colors[2],
-                    background = colors[5],
+                    background = colors[4],
                     configured_keyboards = ['us','cz']
+                    ),
+                widget.Sep(
+                    linewidth = 0,
+                    padding = 6,
+                    foreground = colors[2],
+                    background = colors[4]
                     ),
                 widget.TextBox(
                     text = '',
-                    background = colors[5],
-                    foreground = colors[4],
+                    foreground = colors[5],
+                    background = colors[4],
                     padding = 0,
                     fontsize = 37
                     ),
                 widget.TextBox(
                     text = " ",
                     foreground = colors[2],
-                    background = colors[4],
+                    background = colors[5],
                     padding = 0,
                     fontsize = 11
                     ),
                 widget.Battery(
                     foreground = colors[2],
-                    background = colors[4],
-                    ),
-                widget.TextBox(
-                    text = '',
-                    background = colors[4],
-                    foreground = colors[5],
-                    padding = 0,
-                    fontsize = 37
-                    ),
-                widget.Clock(
-                    format='%d.%m.%Y %a × %H:%M',
-                    foreground = colors[2],
                     background = colors[5],
-                    ),
-                widget.Sep(
-                    linewidth = 0,
-                    padding = 6,
-                    foreground = colors[2],
-                    background = colors[5]
                     ),
                 widget.TextBox(
                     text = '',
@@ -302,16 +290,34 @@ screens = [
                     padding = 0,
                     fontsize = 37
                     ),
-                widget.Systray(
-                    padding = 5,
+                widget.Clock(
+                    format='%d.%m.%Y %a × %H:%M',
                     foreground = colors[2],
-                    background = colors[4]
+                    background = colors[4],
                     ),
                 widget.Sep(
                     linewidth = 0,
                     padding = 6,
                     foreground = colors[2],
                     background = colors[4]
+                    ),
+                widget.TextBox(
+                    text = '',
+                    foreground = colors[5],
+                    background = colors[4],
+                    padding = 0,
+                    fontsize = 37
+                    ),
+                widget.Systray(
+                    padding = 5,
+                    foreground = colors[2],
+                    background = colors[5]
+                    ),
+                widget.Sep(
+                    linewidth = 0,
+                    padding = 6,
+                    foreground = colors[2],
+                    background = colors[5]
                     ),
             ],
             24,
