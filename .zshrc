@@ -29,6 +29,8 @@ complete -o nospace -C /usr/bin/terraform terraform
 alias k=kubectl
 alias pip=pip3
 alias ll='ls -lah'
+alias tf=terraform
+alias gw='./gradlew'
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/home/michalkozak/.sdkman"

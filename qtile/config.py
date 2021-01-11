@@ -82,10 +82,10 @@ for i, (name, kwargs) in enumerate(group_names, 1):
     keys.append(Key([mod], str(i), lazy.group[name].toscreen()))        # Switch to another group
     keys.append(Key([mod, "shift"], str(i), lazy.window.togroup(name))) # Send current window to another group
 
-layout_theme = {"border_width": 2,
-                "margin": 6,
-                "border_focus": "ead61c",
-                "border_normal": "1D2330"
+layout_theme = {"border_width": 7,
+                "margin": 7,
+                "border_focus": "7C5E36",
+                "border_normal": "292d3e"
                 }
 
 
