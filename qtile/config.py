@@ -72,6 +72,7 @@ keys = [
 ]
 
 group_names = [("WORK", {'layout': 'monadtall'}),
+               ("DEV", {'layout': 'monadtall'}),
                ("MINE", {'layout': 'monadtall'}),
                ("CHAT", {'layout': 'monadtall'}),
                ("MUSIC", {'layout': 'monadtall'})]
