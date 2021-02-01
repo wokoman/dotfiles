@@ -4,7 +4,7 @@ import subprocess
 
 from typing import List  # noqa: F401
 
-from libqtile import bar, layout, widget, hook
+from libqtile import bar, layout, widget, hook, extension
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 
@@ -14,6 +14,7 @@ terminal = "alacritty"
 keys = [
     Key([mod], "r", lazy.spawn("rofi -show drun"), desc='rofi dRun Launcher'),
     Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
+    Key([mod], "period", lazy.spawn("splatmoji copypaste🤷"), desc="Emoji menu"),
 
     # Switch between windows
     Key([mod], "h", lazy.layout.left(), desc="Move focus to left"),
@@ -68,7 +69,21 @@ keys = [
     Key([mod], "Print", lazy.spawn(["sh", "-c", "maim -u ~/Pictures/screenshot/screen_$(date +%Y-%m-%d-%T).png"])),
     Key([mod, "shift"], "Print", lazy.spawn(["sh", "-c", "maim -s ~/Pictures/screenshot/area_$(date +%Y-%m-%d-%T).png"])),
     Key([mod, "control"], "Print",
-        lazy.spawn(["sh", "-c", "maim -u -i $(xdotool getactivewindow) ~/Pictures/screenshot/window_$(date +%Y-%m-%d-%T).png"]))
+        lazy.spawn(["sh", "-c", "maim -u -i $(xdotool getactivewindow) ~/Pictures/screenshot/window_$(date +%Y-%m-%d-%T).png"])),
+
+    # Power menu
+    Key([mod, "control"], "x", lazy.run_extension(extension.CommandSet(
+        commands={
+            "shutdown": "systemctl poweroff",
+            "reboot": "systemctl reboot",
+            "suspend": "systemctl suspend",
+            "hibernate": "systemctl hibernate",  # NOTE: A few things need to be set up in advance for this to work.
+            "logout": "loginctl terminate-session $XDG_SESSION_ID",
+            "switch user": "dm-tool switch-to-greeter",  # "dm-tool" is probably part of something other than systemd
+            "lock": "loginctl lock-session",
+            },
+            # dmenu_prompt="session>",
+            )), desc="List options to quit the session.")
 ]
 
 group_names = [("WORK", {'layout': 'monadtall'}),
