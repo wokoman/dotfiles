@@ -14,7 +14,7 @@ terminal = "alacritty"
 keys = [
     Key([mod], "r", lazy.spawn("rofi -show drun"), desc='rofi dRun Launcher'),
     Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
-    Key([mod], "period", lazy.spawn("splatmoji copypaste🤷"), desc="Emoji menu"),
+    Key([mod], "period", lazy.spawn("splatmoji copypaste"), desc="Emoji menu"),
 
     # Switch between windows
     Key([mod], "h", lazy.layout.left(), desc="Move focus to left"),
