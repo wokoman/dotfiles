@@ -7,7 +7,7 @@ fi
 
 export ZSH="/home/michalkozak/.oh-my-zsh"
 export LANG=en_US.UTF-8
-export PATH=$PATH:/opt/gradle/gradle-6.7.1/bin:/home/michalkozak/.local/bin:$HOME/.cargo/env:$HOME/.tfenv/bin
+export PATH=$PATH:/home/michalkozak/.local/bin:$HOME/.cargo/env:$HOME/.tfenv/bin
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
 DISABLE_UPDATE_PROMPT="true"
