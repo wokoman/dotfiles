@@ -89,9 +89,9 @@ keys = [
 
 group_names = [("WORK", {'layout': 'monadtall'}),
                ("DEV", {'layout': 'monadtall'}),
-               ("MINE", {'layout': 'monadtall'}),
+               ("WEB", {'layout': 'monadtall'}),
                ("CHAT", {'layout': 'monadtall'}),
-               ("MUSIC", {'layout': 'monadtall'})]
+               ("MINE", {'layout': 'monadtall'})]
 
 groups = [Group(name, **kwargs) for name, kwargs in group_names]
 
@@ -126,9 +126,10 @@ colors = [["#292d3e", "#292d3e"], # panel background
           ["#434758", "#434758"], # background for current screen tab
           ["#ffffff", "#ffffff"], # font color for group names
           ["#ead61c", "#ead61c"], # border line color for current tab
-          ["#594327", "#594327"], # border line color for other tab and odd widgets
-          ["#7C5E36", "#7C5E36"], # color for the even widgets
-          ["#d7c797", "#d7c797"]] # window name
+          ["#594327", "#594327"], # border line color for other tab
+          ["#393e56", "#393e56"], # color for the even widgets
+          ["#d7c797", "#d7c797"], # window name
+          ["#292d3e", "#292d3e"]] # color for the odd widgets
 
 prompt = "{0}@{1}: ".format(os.environ["USER"], socket.gethostname())
 
@@ -197,13 +198,13 @@ screens = [
                 widget.TextBox(
                     font = 'MesloLGS NF',
                     text = " 🖬",
-                    foreground = colors[2],
+                    foreground = colors[6],
                     background = colors[5],
                     padding = 0,
                     fontsize = 14
                     ),
                 widget.Memory(
-                    foreground = colors[2],
+                    foreground = colors[6],
                     background = colors[5],
                     mouse_callbacks = {'Button1': lambda qtile: qtile.cmd_spawn(terminal + ' -e htop')},
                     padding = 5
@@ -211,35 +212,35 @@ screens = [
                 widget.TextBox(
                     font = 'MesloLGS NF',
                     text='',
+                    foreground = colors[7],
                     background = colors[5],
-                    foreground = colors[4],
                     padding = 0,
                     fontsize = 37
                     ),
                 widget.Net(
                     interface = "eno2",
                     format = '{down} ↓↑ {up}',
-                    foreground = colors[2],
-                    background = colors[4],
+                    foreground = colors[6],
+                    background = colors[7],
                     padding = 5
                     ),
                 widget.TextBox(
                     font = 'MesloLGS NF',
                     text = '',
                     foreground = colors[5],
-                    background = colors[4],
+                    background = colors[7],
                     padding = 0,
                     fontsize = 37
                     ),
                 widget.TextBox(
                     text = "",
-                    foreground = colors[2],
+                    foreground = colors[6],
                     background = colors[5],
                     padding = 0,
                     fontsize = 22
                     ),
                 widget.Volume(
-                    foreground = colors[2],
+                    foreground = colors[6],
                     background = colors[5],
                     padding = 5
                     ),
@@ -266,62 +267,62 @@ screens = [
                 widget.TextBox(
                     font = 'MesloLGS NF',
                     text = '',
-                    foreground = colors[4],
+                    foreground = colors[7],
                     background = colors[5],
                     padding = 0,
                     fontsize = 37
                     ),
                 widget.KeyboardLayout(
-                    foreground = colors[2],
-                    background = colors[4],
+                    foreground = colors[6],
+                    background = colors[7],
                     configured_keyboards = ['us','cz']
                     ),
                 widget.Sep(
                     linewidth = 0,
                     padding = 6,
-                    foreground = colors[2],
-                    background = colors[4]
+                    foreground = colors[7],
+                    background = colors[7]
                     ),
                 widget.TextBox(
                     text = '',
                     foreground = colors[5],
-                    background = colors[4],
+                    background = colors[7],
                     padding = 0,
                     fontsize = 37
                     ),
                 widget.TextBox(
                     text = " ",
-                    foreground = colors[2],
+                    foreground = colors[6],
                     background = colors[5],
                     padding = 0,
                     fontsize = 11
                     ),
                 widget.Battery(
-                    foreground = colors[2],
+                    foreground = colors[6],
                     background = colors[5],
                     ),
                 widget.TextBox(
                     text = '',
                     background = colors[5],
-                    foreground = colors[4],
+                    foreground = colors[7],
                     padding = 0,
                     fontsize = 37
                     ),
                 widget.Clock(
                     format='%d.%m.%Y %a × %H:%M',
-                    foreground = colors[2],
-                    background = colors[4],
+                    foreground = colors[6],
+                    background = colors[7],
                     ),
                 widget.Sep(
                     linewidth = 0,
                     padding = 6,
                     foreground = colors[2],
-                    background = colors[4]
+                    background = colors[7]
                     ),
                 widget.TextBox(
                     text = '',
                     foreground = colors[5],
-                    background = colors[4],
+                    background = colors[7],
                     padding = 0,
                     fontsize = 37
                     ),
