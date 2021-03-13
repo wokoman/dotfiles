@@ -198,7 +198,7 @@ def init_widgets_list():
                 widget.WindowName(
                     foreground = colors[6],
                     background = colors[0],
-                    padding = 0
+                    padding = 0,
                     ),
                 widget.TextBox(
                     font = 'MesloLGS NF',
@@ -208,9 +208,15 @@ def init_widgets_list():
                     padding = 0,
                     fontsize = 37
                     ),
+                widget.CPU(
+                    format = 'CPU: {load_percent}%',
+                    foreground = colors[6],
+                    background = colors[5],
+                    mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(terminal + ' -e htop')},
+                    padding = 5
+                    ),
                 widget.TextBox(
-                    font = 'MesloLGS NF',
-                    text = " 🖬",
+                    text = " RAM:",
                     foreground = colors[6],
                     background = colors[5],
                     padding = 0,
