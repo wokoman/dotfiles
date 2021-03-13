@@ -1,3 +1,4 @@
+import base64
 import os
 import socket
 import subprocess
@@ -13,6 +14,7 @@ from typing import List  # noqa: F401
 
 mod = "mod4"
 terminal = "alacritty"
+owm_api_key = "MDk1MzVmOTk5ZTkwMzU4Njc0ZTc4MmRmMmNlYjc2YzA="
 
 keys = [
     Key([mod], "r", lazy.spawn("rofi -show drun"), desc='rofi dRun Launcher'),
@@ -293,40 +295,56 @@ def init_widgets_list():
                     background = colors[5],
                     ),
                 widget.TextBox(
+                    font = 'MesloLGS NF',
                     text = '',
                     background = colors[5],
                     foreground = colors[7],
                     padding = 0,
                     fontsize = 37
                     ),
+                widget.OpenWeather(
+                    app_key = base64.b64decode(owm_api_key).decode('ascii'),
+                    location = 'Slaný, CZ',
+                    format = '{main_temp} °{units_temperature} {weather_details}',
+                    padding = 5,
+                    foreground = colors[6],
+                    background = colors[7]
+                    ),
+                widget.TextBox(
+                    text = '',
+                    background = colors[7],
+                    foreground = colors[5],
+                    padding = 0,
+                    fontsize = 37
+                    ),
                 widget.Clock(
                     format='%d.%m.%Y %a × %H:%M',
                     foreground = colors[6],
-                    background = colors[7],
+                    background = colors[5],
                     ),
                 widget.Sep(
                     linewidth = 0,
                     padding = 6,
                     foreground = colors[2],
-                    background = colors[7]
+                    background = colors[5]
                     ),
                 widget.TextBox(
                     text = '',
-                    foreground = colors[5],
-                    background = colors[7],
+                    foreground = colors[7],
+                    background = colors[5],
                     padding = 0,
                     fontsize = 37
                     ),
                 widget.Systray(
                     padding = 5,
                     foreground = colors[2],
-                    background = colors[5]
+                    background = colors[7]
                     ),
                 widget.Sep(
                     linewidth = 0,
                     padding = 6,
                     foreground = colors[2],
-                    background = colors[5]
+                    background = colors[7]
                     ),
               ]
     return widgets_list
