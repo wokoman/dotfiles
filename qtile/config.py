@@ -4,9 +4,12 @@ import subprocess
 
 from typing import List  # noqa: F401
 
-from libqtile import bar, layout, widget, hook, extension
-from libqtile.config import Click, Drag, Group, Key, Match, Screen
+from libqtile import qtile, extension
+from libqtile.config import Click, Drag, Group, KeyChord, Key, Match, Screen
+from libqtile.command import lazy
+from libqtile import layout, bar, widget, hook
 from libqtile.lazy import lazy
+from typing import List  # noqa: F401
 
 mod = "mod4"
 terminal = "alacritty"
@@ -33,6 +36,26 @@ keys = [
     Key([mod, "shift"], "j", lazy.layout.shuffle_down(),
         desc="Move window down"),
     Key([mod, "shift"], "k", lazy.layout.shuffle_up(), desc="Move window up"),
+
+    # Switch focus to specific monitor
+    Key([mod], "e",
+        lazy.to_screen(0),
+        desc='Keyboard focus to monitor 1'
+        ),
+    Key([mod], "q",
+        lazy.to_screen(1),
+        desc='Keyboard focus to monitor 2'
+        ),
+
+    # Switch focus of monitors
+    Key([mod], "a",
+        lazy.next_screen(),
+        desc='Move focus to next monitor'
+        ),
+    Key([mod], "s",
+        lazy.prev_screen(),
+        desc='Move focus to prev monitor'
+        ),
 
     # Grow windows
     Key([mod, "control"], "h", lazy.layout.grow(), lazy.layout.increase_nmaster(),
@@ -109,17 +132,7 @@ layout_theme = {"border_width": 7,
 layouts = [
     # layout.Columns(border_focus_stack='#d75f5f'),
     layout.MonadTall(**layout_theme),
-    layout.Max(**layout_theme),
-    # Try more layouts by unleashing below layouts.
-    # layout.Stack(num_stacks=2),
-    # layout.Bsp(),
-    # layout.Matrix(),
-    # layout.MonadWide(),
-    # layout.RatioTile(),
-    # layout.Tile(),
-    # layout.TreeTab(),
-    # layout.VerticalTile(),
-    # layout.Zoomy(),
+    layout.Max(**layout_theme)
 ]
 
 colors = [["#292d3e", "#292d3e"], # panel background
@@ -141,10 +154,8 @@ widget_defaults = dict(
 )
 extension_defaults = widget_defaults.copy()
 
-screens = [
-    Screen(
-        top=bar.Bar(
-            [
+def init_widgets_list():
+    widgets_list = [
                 widget.Sep(
                     linewidth = 0,
                     padding = 6,
@@ -206,7 +217,7 @@ screens = [
                 widget.Memory(
                     foreground = colors[6],
                     background = colors[5],
-                    mouse_callbacks = {'Button1': lambda qtile: qtile.cmd_spawn(terminal + ' -e htop')},
+                    mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(terminal + ' -e htop')},
                     padding = 5
                     ),
                 widget.TextBox(
@@ -244,26 +255,6 @@ screens = [
                     background = colors[5],
                     padding = 5
                     ),
-                # widget.TextBox(
-                #     font = 'MesloLGS NF',
-                #     text = '',
-                #     background = colors[5],
-                #     foreground = colors[4],
-                #     padding = 0,
-                #     fontsize = 37
-                #     ),
-                # widget.CurrentLayoutIcon(
-                #     custom_icon_paths = [os.path.expanduser("~/.config/qtile/icons")],
-                #     foreground = colors[0],
-                #     background = colors[4],
-                #     padding = 0,
-                #     scale = 0.7
-                #     ),
-                # widget.CurrentLayout(
-                #     foreground = colors[2],
-                #     background = colors[4],
-                #     padding = 5
-                #     ),
                 widget.TextBox(
                     font = 'MesloLGS NF',
                     text = '',
@@ -337,11 +328,27 @@ screens = [
                     foreground = colors[2],
                     background = colors[5]
                     ),
-            ],
-            24,
-        ),
-    ),
-]
+              ]
+    return widgets_list
+
+def init_widgets_screen1():
+    widgets_screen1 = init_widgets_list()
+    return widgets_screen1
+
+def init_widgets_screen2():
+    widgets_screen2 = init_widgets_list()
+    del widgets_screen2[5:]
+    return widgets_screen2
+
+def init_screens():
+    return [Screen(top=bar.Bar(widgets=init_widgets_screen1(), opacity=1.0, size=30)),
+            Screen(top=bar.Bar(widgets=init_widgets_screen2(), opacity=1.0, size=30))]
+
+if __name__ in ["config", "__main__"]:
+    screens = init_screens()
+    widgets_list = init_widgets_list()
+    widgets_screen1 = init_widgets_screen1()
+    widgets_screen2 = init_widgets_screen2()
 
 # Drag floating layouts.
 mouse = [
@@ -358,27 +365,12 @@ main = None  # WARNING: this is deprecated and will be removed soon
 follow_mouse_focus = True
 bring_front_click = False
 cursor_warp = False
+
 floating_layout = layout.Floating(float_rules=[
     # Run the utility of `xprop` to see the wm class and name of an X client.
-    Match(wm_type='utility'),
-    Match(wm_type='notification'),
-    Match(wm_type='toolbar'),
-    Match(wm_type='splash'),
-    Match(wm_type='dialog'),
-    Match(wm_class='file_progress'),
-    Match(wm_class='confirm'),
-    Match(wm_class='dialog'),
-    Match(wm_class='download'),
-    Match(wm_class='error'),
-    Match(wm_class='notification'),
-    Match(wm_class='splash'),
-    Match(wm_class='toolbar'),
-    Match(wm_class='confirmreset'),  # gitk
-    Match(wm_class='makebranch'),  # gitk
-    Match(wm_class='maketag'),  # gitk
-    Match(wm_class='ssh-askpass'),  # ssh-askpass
-    Match(title='branchdialog'),  # gitk
-    Match(title='pinentry'),  # GPG key password entry
+    # default_float_rules include: utility, notification, toolbar, splash, dialog,
+    # file_progress, confirm, download and error.
+    *layout.Floating.default_float_rules
 ])
 auto_fullscreen = True
 focus_on_window_activation = "smart"
