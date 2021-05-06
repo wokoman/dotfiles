@@ -7,7 +7,7 @@ fi
 
 export ZSH="/home/michalkozak/.oh-my-zsh"
 export LANG=en_US.UTF-8
-export PATH=$PATH:/home/michalkozak/.local/bin:$HOME/.cargo/env:$HOME/.tfenv/bin
+export PATH=$PATH:/home/michalkozak/.local/bin:$HOME/.cargo/env:$HOME/.tfenv/bin:/usr/local/go/bin
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
 DISABLE_UPDATE_PROMPT="true"
@@ -28,11 +28,14 @@ complete -o nospace -C /usr/bin/terraform terraform
 
 alias k=kubectl
 alias pip=pip3
-alias ll='ls -lah'
+alias ll='exa -lah'
 alias tf=terraform
 alias gw='./gradlew'
 alias ss='systemctl suspend'
+alias av='~/ataccama/ata-vpn.sh'
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/home/michalkozak/.sdkman"
 [[ -s "/home/michalkozak/.sdkman/bin/sdkman-init.sh" ]] && source "/home/michalkozak/.sdkman/bin/sdkman-init.sh"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
