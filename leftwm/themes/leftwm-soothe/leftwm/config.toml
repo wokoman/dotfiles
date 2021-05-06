@@ -1,27 +1,32 @@
 modkey = "Mod4"
+mousekey = "Mod4"
 workspaces = []
-tags = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
+tags = ["WORK", "DEV", "WEB", "CHAT", "MINE"]
+layouts = [
+  "MainAndVertStack",
+  "MainAndHorizontalStack",
+  "MainAndDeck",
+  "GridHorizontal",
+  "EvenHorizontal",
+  "EvenVertical",
+  "Fibonacci",
+  "CenterMain",
+  "CenterMainBalanced",
+  "Monocle",
+  "RightWiderLeftStack",
+  "LeftWiderRightStack",
+]
+disable_current_tag_swap = false
 
-[[keybind]]
-command = "Execute"
-value = "rofi -show drun"
-modifier = ["Mod1"]
-key = "space"
-
-[[keybind]]
-command = "Execute"
-value = "alacritty"
-modifier = ["modkey"]
-key = "Return"
-
-[[keybind]]
-command = "CloseWindow"
-modifier = ["modkey", "Shift"]
-key = "q"
-
+###### LeftWM commands
 [[keybind]]
 command = "SoftReload"
 modifier = ["modkey", "Shift"]
+key = "r"
+
+[[keybind]]
+command = "HardReload"
+modifier = ["modkey", "Control"]
 key = "r"
 
 [[keybind]]
@@ -30,6 +35,7 @@ value = "pkill leftwm"
 modifier = ["modkey", "Shift"]
 key = "x"
 
+###### Programs shortcuts
 [[keybind]]
 command = "Execute"
 value = "slock"
@@ -37,54 +43,161 @@ modifier = ["modkey", "Control"]
 key = "l"
 
 [[keybind]]
-command = "MoveToLastWorkspace"
-modifier = ["modkey", "Shift"]
-key = "w"
+command = "Execute"
+value = "dmenu_run"
+modifier = ["modkey"]
+key = "p"
 
 [[keybind]]
-command = "SwapTags"
+command = "Execute"
+value = "rofi -show drun"
+modifier = ["modkey"]
+key = "r"
+
+[[keybind]]
+command = "Execute"
+value = "splatmoji copypaste"
+modifier = ["modkey"]
+key = "period"
+
+[[keybind]]
+command = "Execute"
+value = "alacritty"
+modifier = ["modkey"]
+key = "Return"
+
+##### Printscreening
+[[keybind]]
+command = "Execute"
+value = "maim -u ~/Pictures/screenshot/screen_$(date +%Y-%m-%d-%T).png"
+modifier = ["modkey"]
+key = "Print"
+
+[[keybind]]
+command = "Execute"
+value = "maim -s ~/Pictures/screenshot/area_$(date +%Y-%m-%d-%T).png"
+modifier = ["modkey", "Shift"]
+key = "Print"
+
+[[keybind]]
+command = "Execute"
+value = "maim -u -i $(xdotool getactivewindow) ~/Pictures/screenshot/window_$(date +%Y-%m-%d-%T).png"
+modifier = ["modkey", "Control"]
+key = "Print"
+
+###### Volume controls
+[[keybind]]
+command = "Execute"
+value = "pactl set-sink-volume @DEFAULT_SINK@ +5%"
+modifier = []
+key = "XF86XK_AudioRaiseVolume"
+
+[[keybind]]
+command = "Execute"
+value = "pactl set-sink-volume @DEFAULT_SINK@ -5%"
+modifier = []
+key = "XF86XK_AudioLowerVolume"
+
+[[keybind]]
+command = "Execute"
+value = "pactl set-sink-mute @DEFAULT_SINK@ toggle"
+modifier = []
+key = "XF86XK_AudioMute"
+
+###### Playback controls
+[[keybind]]
+command = "Execute"
+value = "playerctl next"
+modifier = []
+key = "XF86XK_AudioNext"
+
+[[keybind]]
+command = "Execute"
+value = "playerctl previous"
+modifier = []
+key = "XF86XK_AudioPrev"
+
+[[keybind]]
+command = "Execute"
+value = "playerctl play-pause"
+modifier = []
+key = "XF86XK_AudioPlay"
+
+###### TODO Brightness
+[[keybind]]
+command = "Execute"
+value = "brightnessctl set +10%"
+modifier = []
+key = "XF86XK_MonBrightnessUp"
+
+[[keybind]]
+command = "Execute"
+value = "brightnessctl set 10%-"
+modifier = []
+key = "XF86XK_MonBrightnessDown"
+
+###### Window manipulation
+[[keybind]]
+command = "CloseWindow"
 modifier = ["modkey"]
 key = "w"
 
 [[keybind]]
 command = "MoveWindowUp"
 modifier = ["modkey", "Shift"]
-key = "Up"
+key = "j"
 
 [[keybind]]
 command = "MoveWindowDown"
 modifier = ["modkey", "Shift"]
-key = "Down"
+key = "k"
+
+[[keybind]]
+command = "MoveWindowTop"
+modifier = ["modkey", "Shift"]
+key = "Return"
 
 [[keybind]]
 command = "FocusWindowUp"
 modifier = ["modkey"]
-key = "Up"
+key = "j"
 
 [[keybind]]
 command = "FocusWindowDown"
 modifier = ["modkey"]
-key = "Down"
+key = "k"
+
+[[keybind]]
+command = "DecreaseMainWidth"
+value = "5"
+modifier = ["modkey", "Control"]
+key = "j"
+
+[[keybind]]
+command = "IncreaseMainWidth"
+value = "5"
+modifier = ["modkey", "Control"]
+key = "k"
 
 [[keybind]]
 command = "NextLayout"
-modifier = ["modkey", "Control"]
+modifier = ["modkey"]
 key = "Up"
 
 [[keybind]]
 command = "PreviousLayout"
-modifier = ["modkey", "Control"]
+modifier = ["modkey"]
 key = "Down"
 
 [[keybind]]
 command = "FocusWorkspaceNext"
 modifier = ["modkey"]
-key = "Right"
+key = "q"
 
 [[keybind]]
 command = "FocusWorkspacePrevious"
 modifier = ["modkey"]
-key = "Left"
+key = "e"
 
 [[keybind]]
 command = "GotoTag"
@@ -117,30 +230,6 @@ modifier = ["modkey"]
 key = "5"
 
 [[keybind]]
-command = "GotoTag"
-value = "6"
-modifier = ["modkey"]
-key = "6"
-
-[[keybind]]
-command = "GotoTag"
-value = "7"
-modifier = ["modkey"]
-key = "7"
-
-[[keybind]]
-command = "GotoTag"
-value = "8"
-modifier = ["modkey"]
-key = "8"
-
-[[keybind]]
-command = "GotoTag"
-value = "9"
-modifier = ["modkey"]
-key = "9"
-
-[[keybind]]
 command = "MoveToTag"
 value = "1"
 modifier = ["modkey", "Shift"]
@@ -169,27 +258,3 @@ command = "MoveToTag"
 value = "5"
 modifier = ["modkey", "Shift"]
 key = "5"
-
-[[keybind]]
-command = "MoveToTag"
-value = "6"
-modifier = ["modkey", "Shift"]
-key = "6"
-
-[[keybind]]
-command = "MoveToTag"
-value = "7"
-modifier = ["modkey", "Shift"]
-key = "7"
-
-[[keybind]]
-command = "MoveToTag"
-value = "8"
-modifier = ["modkey", "Shift"]
-key = "8"
-
-[[keybind]]
-command = "MoveToTag"
-value = "9"
-modifier = ["modkey", "Shift"]
-key = "9"
