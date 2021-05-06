@@ -71,6 +71,7 @@ keys = [
     Key([mod], "m", lazy.layout.maximize(), desc="Maximize window size ratios"),
 
     Key([mod, "control"], "r", lazy.restart(), desc="Restart Qtile"),
+    Key([mod, "control"], "q", lazy.shutdown(), desc="Quit Qtile"),
     Key([mod, "shift"], "r", lazy.spawncmd(),
         desc="Spawn a command using a prompt widget"),
 
