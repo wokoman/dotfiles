@@ -33,6 +33,8 @@ alias tf=terraform
 alias gw='./gradlew'
 alias ss='systemctl suspend'
 alias av='~/ataccama/ata-vpn.sh'
+alias vim='nvim'
+alias oldvim='\vim'
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/home/michalkozak/.sdkman"
