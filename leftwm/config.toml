@@ -258,3 +258,8 @@ command = "MoveToTag"
 value = "5"
 modifier = ["modkey", "Shift"]
 key = "5"
+
+[[keybind]]
+command = "ToggleFullScreen"
+modifier = ["modkey"]
+key = "space"
