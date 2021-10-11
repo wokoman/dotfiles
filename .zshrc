@@ -5,9 +5,9 @@ fi
 
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-export ZSH="/home/michalkozak/.oh-my-zsh"
+export ZSH="/Users/michal.kozak/.oh-my-zsh"
 export LANG=en_US.UTF-8
-export PATH=$PATH:/home/michalkozak/.local/bin:$HOME/.cargo/env:$HOME/.tfenv/bin:/usr/local/go/bin
+export PATH=$PATH:/Users/michal.kozak/.local/bin:$HOME/.cargo/env:$HOME/.tfenv/bin:/usr/local/go/bin
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
 DISABLE_UPDATE_PROMPT="true"
@@ -31,13 +31,11 @@ alias pip=pip3
 alias ll='exa -lah'
 alias tf=terraform
 alias gw='./gradlew'
-alias ss='systemctl suspend'
-alias av='~/ataccama/ata-vpn.sh'
 alias vim='nvim'
 alias oldvim='\vim'
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/home/michalkozak/.sdkman"
-[[ -s "/home/michalkozak/.sdkman/bin/sdkman-init.sh" ]] && source "/home/michalkozak/.sdkman/bin/sdkman-init.sh"
+export SDKMAN_DIR="/Users/michal.kozak/.sdkman"
+[[ -s "/Users/michal.kozak/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/michal.kozak/.sdkman/bin/sdkman-init.sh"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
