@@ -6,6 +6,7 @@ fi
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 export ZSH="/Users/michal.kozak/.oh-my-zsh"
+export GPG_TTY=$(tty)
 export LANG=en_US.UTF-8
 export PATH=$PATH:/Users/michal.kozak/.local/bin:$HOME/.cargo/env:$HOME/.tfenv/bin:/usr/local/go/bin
 
@@ -33,7 +34,7 @@ alias tf=terraform
 alias gw='./gradlew'
 alias vim='nvim'
 alias oldvim='\vim'
-alias docker=podman
+alias docker=nerdctl
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/Users/michal.kozak/.sdkman"
