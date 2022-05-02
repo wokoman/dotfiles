@@ -6,9 +6,9 @@ fi
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 export ZSH="/Users/michal.kozak/.oh-my-zsh"
-export GPG_TTY=$(tty)
+export GPG_TTY=$TTY
 export LANG=en_US.UTF-8
-export PATH=$PATH:/Users/michal.kozak/.local/bin:$HOME/.cargo/env:$HOME/.tfenv/bin:/usr/local/go/bin
+export PATH=$PATH:/Users/michal.kozak/.local/bin:$HOME/.cargo/env:$HOME/.tfenv/bin:/usr/local/go/bin:$HOME/.rd/bin
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
 DISABLE_UPDATE_PROMPT="true"
