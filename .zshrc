@@ -8,7 +8,7 @@ fi
 export ZSH="/Users/michal.kozak/.oh-my-zsh"
 export GPG_TTY=$TTY
 export LANG=en_US.UTF-8
-export PATH=$PATH:/Users/michal.kozak/.local/bin:$HOME/.cargo/env:$HOME/.tfenv/bin:/usr/local/go/bin:$HOME/.rd/bin
+export PATH=$PATH:/Users/michal.kozak/.local/bin:$HOME/.cargo/env:$HOME/.tfenv/bin:/usr/local/go/bin:$HOME/.rd/bin:$HOME/.poetry/bin
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
 DISABLE_UPDATE_PROMPT="true"
@@ -35,6 +35,7 @@ alias gw='./gradlew'
 alias vim='nvim'
 alias oldvim='\vim'
 alias docker=nerdctl
+alias python=python3
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/Users/michal.kozak/.sdkman"

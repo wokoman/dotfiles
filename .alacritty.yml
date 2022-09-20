@@ -5,32 +5,32 @@ scrolling:
 colors:
   # Default colors
   primary:
-    background: '#1e1e1e' #Background from Dark Theme
+    background: "#1e1e1e" #Background from Dark Theme
 
   # Normal colors
   normal:
-    black:   '#000000'
-    red:     '#cd3131'
-    green:   '#0dbc79'
-    yellow:  '#e5e510'
-    blue:    '#2472c8'
-    magenta: '#bc3fbc'
-    cyan:    '#11a8cd'
-    white:   '#e5e5e5'
+    black: "#000000"
+    red: "#cd3131"
+    green: "#0dbc79"
+    yellow: "#e5e510"
+    blue: "#2472c8"
+    magenta: "#bc3fbc"
+    cyan: "#11a8cd"
+    white: "#e5e5e5"
 
   # Bright colors
   bright:
-    black:   '#666666'
-    red:     '#f14c4c'
-    green:   '#23d18b'
-    yellow:  '#f5f543'
-    blue:    '#3b8eea'
-    magenta: '#d670d6'
-    cyan:    '#29b8db'
-    white:   '#e5e5e5'
+    black: "#666666"
+    red: "#f14c4c"
+    green: "#23d18b"
+    yellow: "#f5f543"
+    blue: "#3b8eea"
+    magenta: "#d670d6"
+    cyan: "#29b8db"
+    white: "#e5e5e5"
 
 font:
-  size: 13
+  size: 16.0
   normal:
     family: "MesloLGS NF"
     style: Regular
@@ -46,6 +46,14 @@ font:
 
 cursor:
   style:
+    shape: Block
     blinking: Always
   blink_interval: 450
   unfocused_hollow: true
+
+selection:
+  # This string contains all characters that are used as separators for
+  # "semantic words" in Alacritty.
+  semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
+  # When set to `true`, selected text will be copied to the primary clipboard.
+  save_to_clipboard: true
