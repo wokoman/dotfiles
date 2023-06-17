@@ -1,3 +1,8 @@
+window:
+  padding:
+    x: 5
+    y: 0
+
 scrolling:
   history: 10000
   multiplier: 10
@@ -49,6 +54,7 @@ cursor:
     shape: Block
     blinking: Always
   blink_interval: 450
+  blink_timeout: 0
   unfocused_hollow: true
 
 selection:
