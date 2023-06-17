@@ -5,10 +5,10 @@ fi
 
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-export ZSH="/Users/michal.kozak/.oh-my-zsh"
+export ZSH="/Users/michalkozak/.oh-my-zsh"
 export GPG_TTY=$TTY
 export LANG=en_US.UTF-8
-export PATH=$PATH:/Users/michal.kozak/.local/bin:$HOME/.cargo/env:$HOME/.tfenv/bin:/usr/local/go/bin:$HOME/.rd/bin:$HOME/.poetry/bin
+export PATH=$PATH:/Users/michalkozak/.local/bin:$HOME/.cargo/env:$HOME/.tfenv/bin:/usr/local/go/bin
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
 DISABLE_UPDATE_PROMPT="true"
@@ -27,18 +27,13 @@ complete -F __start_kubectl k
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/bin/terraform terraform
 
-alias k=kubectl
-alias pip=pip3
-alias ll='exa -lah'
-alias tf=terraform
-alias gw='./gradlew'
-alias vim='nvim'
-alias oldvim='\vim'
 alias docker=nerdctl
+alias k=kubectl
+alias ll='exa -lah'
+alias oldvim='\vim'
+alias pip=pip3
 alias python=python3
-
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/Users/michal.kozak/.sdkman"
-[[ -s "/Users/michal.kozak/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/michal.kozak/.sdkman/bin/sdkman-init.sh"
+alias tf=terraform
+alias vim='nvim'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
