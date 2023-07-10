@@ -15,7 +15,28 @@ DISABLE_UPDATE_PROMPT="true"
 COMPLETION_WAITING_DOTS="true"
 HIST_STAMPS="dd.mm.yyyy"
 
-plugins=(compleat git gradle kubectl poetry sudo zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(
+  argocd
+  aws
+  brew
+  common-aliases
+  compleat
+  encode64
+  fzf
+  git
+  git-auto-fetch
+  golang
+  helm
+  kubectl
+  pip
+  rsync
+  rust
+  sudo
+  terraform
+  vscode
+  zsh-autosuggestions
+  zsh-syntax-highlighting
+  )
 
 source $ZSH/oh-my-zsh.sh
 
@@ -35,5 +56,3 @@ alias pip=pip3
 alias python=python3
 alias tf=terraform
 alias vim='nvim'
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
