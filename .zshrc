@@ -40,14 +40,6 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
-# kubectl autocompletion
-source <(kubectl completion zsh) # setup autocomplete in bash into the current shell, bash-completion package should be installed first.
-complete -F __start_kubectl k
-
-# Terraform autocompletion
-autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C /usr/bin/terraform terraform
-
 alias docker=nerdctl
 alias k=kubectl
 alias ll='exa -lah'
