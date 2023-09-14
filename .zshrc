@@ -42,7 +42,7 @@ source $ZSH/oh-my-zsh.sh
 
 alias docker=nerdctl
 alias k=kubectl
-alias ll='exa -lah'
+alias ll='eza -lah'
 alias oldvim='\vim'
 alias pip=pip3
 alias python=python3
