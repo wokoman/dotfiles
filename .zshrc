@@ -45,6 +45,7 @@ export FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
 
 alias docker=nerdctl
 alias k=kubectl
+alias kx=kubectx
 alias ll='eza -lah'
 alias oldvim='\vim'
 alias pip=pip3
@@ -52,6 +53,13 @@ alias python=python3
 alias tf=terraform
 alias vim='nvim'
 alias snowsql=/Applications/SnowSQL.app/Contents/MacOS/snowsql
+alias ..='cd ..'
+
+source <(fzf --zsh)
+
+eval "$(brew shellenv)"
+autoload -Uz compinit
+compinit
 
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
