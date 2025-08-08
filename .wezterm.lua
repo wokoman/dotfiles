@@ -10,7 +10,7 @@ end
 -- C O N F I G   T I M E (◔◡◔✿) --
 config.color_scheme = 'Monokai (base16)'
 config.font = wezterm.font('0xProto Nerd Font Mono')
-config.font_size = 18.0
+config.font_size = 14.0
 config.keys = {
     -- Make Option-Left equivalent to Alt-b which many line editors interpret as backward-word
     { key = 'LeftArrow',  mods = 'OPT', action = act.SendString '\x1bb' },
