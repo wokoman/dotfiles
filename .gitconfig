@@ -1,0 +1,25 @@
+[includeIf "gitdir:~/gitlab/"]
+	path = ~/gitlab/.gitconfig
+[includeIf "gitdir:~/github/"]
+	path = ~/github/.gitconfig
+[includeIf "gitdir:~/keboola/"]
+	path = ~/keboola/.gitconfig
+[core]
+	editor = vim
+	pager = diff-so-fancy | less --tabs=4 -RF
+[credential]
+	helper = store
+[commit]
+	gpgsign = true
+[gpg]
+	format = ssh
+[gpg "ssh"]
+	program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+[interactive]
+	diffFilter = diff-so-fancy --patch
+[diff]
+	algorithm = histogram
+[branch]
+    sort = -committerdate
+[column]
+    ui = auto

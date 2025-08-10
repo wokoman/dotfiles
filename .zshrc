@@ -41,12 +41,9 @@ else
   done
 fi
 
-# Add brew-managed completion functions (only if brew is available)
+# Deduplicate FPATH (brew shellenv already adds completion paths)
 if command -v brew &>/dev/null; then
-  fpath_add="$(brew --prefix)/share/zsh/site-functions"
-  if [[ -d $fpath_add ]]; then
-    FPATH="$fpath_add:$FPATH"
-  fi
+  typeset -U fpath FPATH
 fi
 
 ###############################################################################
@@ -67,13 +64,19 @@ setopt HIST_FCNTL_LOCK
 chmod 600 "$HISTFILE" 2>/dev/null
 
 ###############################################################################
-# 4. Completion / Compinit
+# 4. Completion System
 ###############################################################################
 autoload -Uz compinit
-# Run once with cache trust; you can force a rebuild sometimes with: compinit -i
-if [[ -z ${__COMPINIT_DONE:-} ]]; then
-  compinit -C
-  __COMPINIT_DONE=1
+compinit
+
+# Configure intelligent completion matching (like Oh My Zsh)
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
+zstyle ':completion:*' menu select
+zstyle ':completion:*' list-colors ''
+
+# Link Homebrew completions for external commands
+if command -v brew &>/dev/null; then
+  brew completions link &>/dev/null || true
 fi
 
 ###############################################################################
@@ -94,20 +97,20 @@ alias snowsql=/Applications/SnowSQL.app/Contents/MacOS/snowsql
 alias ..='cd ..'
 
 ###############################################################################
-# 6. FZF integration (guarded)
+# 6. FZF Integration
 ###############################################################################
 if command -v fzf &>/dev/null; then
   source <(fzf --zsh)
 fi
 
 ###############################################################################
-# 7. Optional: Colors / Misc Prompt Utils
+# 7. Shell Options & Colors
 ###############################################################################
 autoload -Uz colors && colors
 setopt PROMPT_SUBST
 
 ###############################################################################
-# 8. Dynamic Plugin Sourcing (before prompt)
+# 8. Zsh Plugins
 ###############################################################################
 case "$OSTYPE" in
   darwin*)
@@ -138,14 +141,14 @@ fi
 unset _zsh_autosuggest _zsh_syntax _zsh_history_substring
 
 ###############################################################################
-# 9. Git plugin / custom scripts
+# 9. Custom Scripts
 ###############################################################################
 if [[ -f ~/.config/git.plugin.zsh ]]; then
   source ~/.config/git.plugin.zsh
 fi
 
 ###############################################################################
-# 10. Prompt (Starship) - keep last
+# 10. Prompt (keep last)
 ###############################################################################
 if command -v starship &>/dev/null; then
   eval "$(starship init zsh)"

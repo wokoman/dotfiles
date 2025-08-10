@@ -1,0 +1,13 @@
+[user]
+	name = Michal Kozák
+	email = wokoman@gmail.com
+  signingkey = ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCpxhan3iN6mJwjn3u9cPSltGhMRy6DYMHGwxoIA2KHSB2qkKINxq2x0o6LC2rO+wyfODk0Aj16Mq9sc43ad0S5Pi78lxSs7J+pyafvdSFU+sWv2n9pOKDf6EgO6U1pJhm9hbKgVSJH5ZGbIGhxr9nr493vaC8xn59uiBQrG8mN5uHYjGqKxhIdA0srvc8pSroPhM8jjOOpCUZjDcMa5Ma9/RnEcoMvKxVseJx7i2l2n51Ol42ID79imL4G7yr76PDxyGMvU5xuaDHeM2g1IywfKoGWNxkA1qru9Cgz8eABAXhD40pErBI7+rfc4wQX4IjFSHeVsI3PPAtWsDOEejo6Dt7reSD84AYEn2pDhWJay8SxyZFhMlQsiSkX32TreexRTeEeDnQxN2gvACUbyJZv0b29uNV/8P0AfjhlH8vpicwIA2RE83Yyl9vEQBtjRGpSAItNme6IPAwpvhvvj5W4qjjHfVtmTmRxqIUy7y27IVuFSjx3ZSz3rD94IQTTyrARyCHHy3cICmVAdF61pbuSBIQmJqtvUcxO6X/DEsUQMaSudUBadnhZdGaGF+uw6INCsagWK5lFGGbtnal1Oh2w6IppxDJzb6bofvmimRATjij2Ai/EPVlnlYBYJ6jooMZZV+GZYRFVcw3SP8cZ46n9njf1O90QCK+edKt4Nums0Q==
+
+[gpg]
+  format = ssh
+
+[gpg "ssh"]
+  program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+
+[commit]
+  gpgsign = true
