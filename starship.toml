@@ -3,6 +3,7 @@
 format = """
 [](color_0)\
 $os\
+$shell\
 $directory\
 [](bg:color_1 fg:color_0)\
 $git_branch\
@@ -40,6 +41,10 @@ color_3 = '#93b071'
 color_4 = '#ede2cc'
 color_5 = '#edae93'
 color_6 = '#dd6670'
+
+[shell]
+disabled = false
+format = '[[ $indicator](fg:color_fg0 bg:color_0)]($style)'
 
 [os]
 disabled = false
