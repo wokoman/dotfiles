@@ -4,7 +4,7 @@ Personal dotfiles for macOS and Linux (Manjaro/Arch).
 
 ## What's included
 
-- **Shell**: Zsh with intelligent completions
+- **Shell**: Zsh and Fish (shortcuts, completions, vi keybindings)
 - **Terminal**: WezTerm
 - **Editor**: Zed
 - **Prompt**: Starship
@@ -16,16 +16,20 @@ Personal dotfiles for macOS and Linux (Manjaro/Arch).
 #### macOS
 
 ```bash
-brew install starship git fzf eza kubectx
+brew install fish starship git fzf eza kubectx fisher
 brew install --cask wezterm zed
+# Zsh-only (optional)
 brew install zsh-autosuggestions zsh-syntax-highlighting
 ```
 
 #### Manjaro/Arch
 
 ```bash
-sudo pacman -S starship git fzf eza kubectx zsh-autosuggestions zsh-syntax-highlighting zsh-history-substring-search
+sudo pacman -S fish starship git fzf eza kubectx
+# Zsh-only (optional)
+sudo pacman -S zsh-autosuggestions zsh-syntax-highlighting zsh-history-substring-search
 yay -S wezterm-git zed
+yay -S fisher   # if not available via pacman
 ```
 
 ### Font
@@ -58,9 +62,11 @@ chmod +x setup.sh
 
 ```bash
 mkdir -p ~/.config
+mkdir -p ~/.config/fish
 
 # Core
 ln -sf ~/dotfiles/.zshrc ~/.zshrc
+ln -sf ~/dotfiles/config.fish ~/.config/fish/config.fish
 ln -sf ~/dotfiles/.gitconfig ~/.gitconfig
 
 # Apps
@@ -74,6 +80,35 @@ ln -sf ~/dotfiles/.alacritty.yml ~/.alacritty.yml
 ln -sf ~/dotfiles/nvim ~/.config/nvim
 ln -sf ~/dotfiles/leftwm ~/.config/leftwm      # Linux
 ln -sf ~/dotfiles/qtile ~/.config/qtile        # Linux
+```
+
+### Shell setup
+
+Choose your default shell (both are supported):
+
+```bash
+# Zsh (current default in setup.sh)
+chsh -s "$(which zsh)"
+
+# Fish (if you prefer fish)
+chsh -s "$(which fish)"
+```
+
+### Fish plugins
+
+This repo uses the excellent Fish Git plugin by jhillyerd. It adds helpful abbreviations and functions for Git workflows.
+
+Install via Fisher (the setup script attempts this automatically if Fish is present):
+
+```bash
+# Ensure Fisher is installed
+brew install fisher                             # macOS
+# or: yay -S fisher                              # Arch/Manjaro
+# or (official script):
+# fish -c 'curl -sL https://git.io/fisher | source; and fisher install jorgebucaran/fisher'
+
+# Install the Git plugin
+fish -c 'fisher install jhillyerd/plugin-git'
 ```
 
 ### Git setup
@@ -90,6 +125,7 @@ cp ~/dotfiles/.gitconfig-github ~/github/.gitconfig
 ## Features
 
 - **Zsh**: Fuzzy completions, history management, auto-suggestions, syntax highlighting
+- **Fish**: Abbreviations (`k`, `tf`, `ll`, `kx`, `bubu`), vi key bindings, fzf integration
 - **Starship**: Git status, language versions, Kubernetes context, command duration
 - **WezTerm**: Custom colors, 0xProto font, key bindings
 - **Git**: Directory-specific configs, 1Password SSH signing
@@ -102,6 +138,10 @@ cp ~/dotfiles/.gitconfig-github ~/github/.gitconfig
 rm -f ~/.zcompdump*
 exec zsh
 ```
+
+### Fish: fzf integration missing
+
+Ensure `fzf` is installed. The fish config sources `fzf --fish | source` to enable completions and keybindings.
 
 ### Homebrew completions missing
 

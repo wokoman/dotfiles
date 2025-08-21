@@ -7,6 +7,10 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
+  "vim_mode": true,
+  "vim": {
+    "toggle_relative_line_numbers": true
+  },
   "edit_predictions": {
     "mode": "subtle",
     "copilot": {
@@ -23,8 +27,8 @@
     "always_allow_tool_actions": false,
     "dock": "right",
     "default_model": {
-      "provider": "google",
-      "model": "gemini-2.5-flash"
+      "provider": "zed.dev",
+      "model": "claude-sonnet-4"
     }
   },
   "agent_font_size": 19,

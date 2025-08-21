@@ -65,6 +65,79 @@ create_symlink "$DOTFILES_DIR/.wezterm.lua" "$HOME/.wezterm.lua" "WezTerm termin
 create_symlink "$DOTFILES_DIR/zed.json" "$HOME/.config/zed/settings.json" "Zed editor"
 create_symlink "$DOTFILES_DIR/git.plugin.zsh" "$HOME/.config/git.plugin.zsh" "Git plugin"
 
+# Fish shell configuration and plugins
+echo
+echo -e "${BLUE}🐟 Setting up Fish shell...${NC}"
+
+if command_exists fish; then
+    create_symlink "$DOTFILES_DIR/config.fish" "$HOME/.config/fish/config.fish" "Fish configuration"
+
+    # Ensure Fisher (Fish plugin manager) is installed
+    echo -e "${BLUE}🎣 Checking Fisher plugin manager...${NC}"
+    if fish -c 'type -q fisher'; then
+        echo -e "${GREEN}✅ Fisher is available${NC}"
+    else
+        echo -e "${YELLOW}⚠️  Fisher not found. Attempting installation...${NC}"
+        if command_exists brew; then
+            if brew list fisher &>/dev/null; then
+                echo -e "${GREEN}✅ Fisher installed via Homebrew${NC}"
+            else
+                if brew install fisher; then
+                    echo -e "${GREEN}✅ Installed Fisher via Homebrew${NC}"
+                else
+                    echo -e "${YELLOW}⚠️  Failed to install Fisher via Homebrew${NC}"
+                fi
+            fi
+        elif command_exists yay; then
+            if yay -Qi fisher &>/dev/null; then
+                echo -e "${GREEN}✅ Fisher already installed (yay)${NC}"
+            else
+                if yay -S --noconfirm fisher; then
+                    echo -e "${GREEN}✅ Installed Fisher via yay${NC}"
+                else
+                    echo -e "${YELLOW}⚠️  Failed to install Fisher via yay${NC}"
+                fi
+            fi
+        elif command_exists pacman; then
+            if pacman -Qi fisher &>/dev/null; then
+                echo -e "${GREEN}✅ Fisher already installed (pacman)${NC}"
+            else
+                echo -e "${YELLOW}⚠️  Fisher package not found via pacman. Falling back to online installer if available.${NC}"
+            fi
+        fi
+
+        # Final fallback: attempt official install if curl is available
+        if ! fish -c 'type -q fisher'; then
+            if command_exists curl; then
+                echo -e "${YELLOW}🌐 Installing Fisher using official script...${NC}"
+                if fish -c 'curl -sL https://git.io/fisher | source; and fisher install jorgebucaran/fisher'; then
+                    echo -e "${GREEN}✅ Fisher installed via official script${NC}"
+                else
+                    echo -e "${YELLOW}⚠️  Could not install Fisher automatically. Install it manually: https://github.com/jorgebucaran/fisher${NC}"
+                fi
+            else
+                echo -e "${YELLOW}⚠️  curl not available. Please install Fisher manually: https://github.com/jorgebucaran/fisher${NC}"
+            fi
+        fi
+    fi
+
+    # Install jhillyerd/plugin-git via Fisher
+    if fish -c 'type -q fisher'; then
+        echo -e "${BLUE}🔌 Installing Fish plugin: jhillyerd/plugin-git...${NC}"
+        if fish -c 'fisher list | command grep -q "^jhillyerd/plugin-git$"'; then
+            echo -e "${GREEN}✅ plugin-git already installed${NC}"
+        else
+            if fish -c 'fisher install jhillyerd/plugin-git'; then
+                echo -e "${GREEN}✅ Installed plugin-git${NC}"
+            else
+                echo -e "${YELLOW}⚠️  Failed to install plugin-git. Try manually: fish -c "fisher install jhillyerd/plugin-git"${NC}"
+            fi
+        fi
+    fi
+else
+    echo -e "${YELLOW}⚠️  Fish shell not found. Skipping Fish-specific setup${NC}"
+fi
+
 # Optional configurations
 echo
 echo -e "${BLUE}📦 Setting up optional configs...${NC}"
