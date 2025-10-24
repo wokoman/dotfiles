@@ -20,19 +20,37 @@
     },
     "enabled_in_text_threads": false
   },
-  "context_servers": {},
+  "context_servers": {
+        "terraform-context-server": {
+            "source": "extension",
+            "enabled": true,
+            "settings": {}
+        },
+        "mcp-server-github": {
+            "source": "extension",
+            "enabled": true,
+            "settings": {
+                "github_personal_access_token": ""
+            }
+        },
+        "mcp-server-context7": {
+            "source": "extension",
+            "enabled": true,
+            "settings": {
+                "default_minimum_tokens": "10000"
+            }
+        }
+    },
   "icon_theme": "Bearded Icon Theme",
   "agent": {
-    "default_profile": "write",
-    "always_allow_tool_actions": false,
-    "dock": "right",
     "default_model": {
-      "provider": "zed.dev",
-      "model": "claude-sonnet-4"
-    }
+      "provider": "copilot_chat",
+      "model": "claude-sonnet-4.5"
+    },
+    "model_parameters": []
   },
   "agent_font_size": 19,
-  "show_edit_predictions": false,
+  "show_edit_predictions": true,
   "features": {
     "edit_prediction_provider": "zed"
   },
@@ -55,6 +73,9 @@
     "current_line_highlight": null
   },
   "languages": {
+    "Terraform": {
+      "format_on_save": "on"
+    },
     "Python": {
       "language_servers": ["pyright", "ruff"],
       "format_on_save": "on",
@@ -81,6 +102,24 @@
       "**/helmfile.d/**/*.yaml",
       "**/helmfile.d/**/*.yml",
       "**/values*.yaml"
+    ],
+    "Ansible": [
+      "**.ansible.yml",
+      "**.ansible.yaml",
+      "**/defaults/*.yml",
+      "**/defaults/*.yaml",
+      "**/meta/*.yml",
+      "**/meta/*.yaml",
+      "**/tasks/*.yml",
+      "**/tasks/*.yaml",
+      "**/handlers/*.yml",
+      "**/handlers/*.yaml",
+      "**/group_vars/*.yml",
+      "**/group_vars/*.yaml",
+      "**/playbooks/*.yaml",
+      "**/playbooks/*.yml",
+      "**playbook*.yaml",
+      "**playbook*.yml"
     ]
   },
   "ui_font_size": 18,
