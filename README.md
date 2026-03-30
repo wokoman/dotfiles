@@ -4,9 +4,9 @@ Personal dotfiles for macOS and Linux (Manjaro/Arch).
 
 ## What's included
 
-- **Shell**: Zsh and Fish (shortcuts, completions, vi keybindings)
+- **Shell**: Fish (default) and Zsh (shortcuts, completions, vi keybindings)
 - **Terminal**: WezTerm
-- **Editor**: Zed
+- **Editor**: [Zed](https://zed.dev) (install from zed.dev or the App Store)
 - **Prompt**: Starship
 - **Git**: Cross-platform configuration with SSH signing
 - **Extras**: Neovim, Alacritty, window managers (LeftWM, Qtile)
@@ -16,8 +16,8 @@ Personal dotfiles for macOS and Linux (Manjaro/Arch).
 #### macOS
 
 ```bash
-brew install fish starship git fzf eza kubectx fisher
-brew install --cask wezterm zed
+brew install fish starship git fzf eza diff-so-fancy kubectx fisher
+brew install --cask wezterm font-0xproto-nerd-font
 # Zsh-only (optional)
 brew install zsh-autosuggestions zsh-syntax-highlighting
 ```
@@ -25,28 +25,12 @@ brew install zsh-autosuggestions zsh-syntax-highlighting
 #### Manjaro/Arch
 
 ```bash
-sudo pacman -S fish starship git fzf eza kubectx
+sudo pacman -S fish starship git fzf eza diff-so-fancy kubectx
 # Zsh-only (optional)
 sudo pacman -S zsh-autosuggestions zsh-syntax-highlighting zsh-history-substring-search
-yay -S wezterm-git zed
+yay -S wezterm-git
 yay -S fisher   # if not available via pacman
-```
-
-### Font
-
-Install 0xProto Nerd Font:
-
-#### macOS
-
-```bash
-brew tap homebrew/cask-fonts
-brew install font-0xproto-nerd-font
-```
-
-#### Linux
-
-```bash
-yay -S ttf-0xproto-nerd  # Arch/Manjaro
+yay -S ttf-0xproto-nerd
 ```
 
 ## Installation
@@ -72,7 +56,6 @@ ln -sf ~/dotfiles/.gitconfig ~/.gitconfig
 # Apps
 ln -sf ~/dotfiles/starship.toml ~/.config/starship.toml
 ln -sf ~/dotfiles/.wezterm.lua ~/.wezterm.lua
-ln -sf ~/dotfiles/zed.json ~/.config/zed/settings.json
 ln -sf ~/dotfiles/git.plugin.zsh ~/.config/git.plugin.zsh
 
 # Optional
@@ -84,14 +67,21 @@ ln -sf ~/dotfiles/qtile ~/.config/qtile        # Linux
 
 ### Shell setup
 
-Choose your default shell (both are supported):
+Fish is the default shell. On macOS you need to add it to `/etc/shells` first:
 
 ```bash
-# Zsh (current default in setup.sh)
-chsh -s "$(which zsh)"
-
-# Fish (if you prefer fish)
+# macOS – add fish to allowed shells and set as default
+echo "$(which fish)" | sudo tee -a /etc/shells
 chsh -s "$(which fish)"
+
+# Linux – usually just:
+chsh -s "$(which fish)"
+```
+
+Zsh is also fully configured if you prefer it:
+
+```bash
+chsh -s "$(which zsh)"
 ```
 
 ### Fish plugins
@@ -115,24 +105,26 @@ fish -c 'fisher install jhillyerd/plugin-git'
 
 ```bash
 # Create work directories
-mkdir -p ~/github ~/gitlab ~/keboola
+mkdir -p ~/github ~/gitlab
 
 # Copy GitHub config template
 cp ~/dotfiles/.gitconfig-github ~/github/.gitconfig
 # Edit ~/github/.gitconfig with your details
 ```
 
+The `.gitconfig` uses `includeIf` to load directory-specific configs, so repos cloned into `~/github/` or `~/gitlab/` automatically pick up the right identity.
+
 ## Features
 
-- **Zsh**: Fuzzy completions, history management, auto-suggestions, syntax highlighting
 - **Fish**: Abbreviations (`k`, `tf`, `ll`, `kx`, `bubu`), vi key bindings, fzf integration
-- **Starship**: Git status, language versions, Kubernetes context, command duration
+- **Zsh**: Fuzzy completions, history management, auto-suggestions, syntax highlighting
+- **Starship**: Git status, language versions, Kubernetes context, shell indicator, command duration
 - **WezTerm**: Custom colors, 0xProto font, key bindings
-- **Git**: Directory-specific configs, 1Password SSH signing
+- **Git**: Directory-specific configs, 1Password SSH signing, `diff-so-fancy` pager
 
 ## Troubleshooting
 
-### Completions not working
+### Zsh completions not working
 
 ```bash
 rm -f ~/.zcompdump*
@@ -153,4 +145,13 @@ brew completions link
 
 ```bash
 chmod -R go-w "$(brew --prefix)/share"
+```
+
+### Git diff pager not working
+
+Make sure `diff-so-fancy` is installed — it's configured as the default pager in `.gitconfig`:
+
+```bash
+brew install diff-so-fancy     # macOS
+sudo pacman -S diff-so-fancy   # Arch/Manjaro
 ```

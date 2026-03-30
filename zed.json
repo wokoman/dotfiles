@@ -7,11 +7,13 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
+  "colorize_brackets": true,
   "vim_mode": true,
   "vim": {
     "toggle_relative_line_numbers": true
   },
   "edit_predictions": {
+    "provider": "zed",
     "mode": "subtle",
     "copilot": {
       "proxy": null,
@@ -21,39 +23,35 @@
     "enabled_in_text_threads": false
   },
   "context_servers": {
-        "terraform-context-server": {
-            "source": "extension",
-            "enabled": true,
-            "settings": {}
-        },
-        "mcp-server-github": {
-            "source": "extension",
-            "enabled": true,
-            "settings": {
-                "github_personal_access_token": ""
-            }
-        },
-        "mcp-server-context7": {
-            "source": "extension",
-            "enabled": true,
-            "settings": {
-                "default_minimum_tokens": "10000"
-            }
-        }
+    "terraform-context-server": {
+      "enabled": true,
+      "settings": {}
     },
+    "mcp-server-github": {
+      "enabled": true,
+      "settings": {
+        "github_personal_access_token": ""
+      }
+    },
+    "mcp-server-context7": {
+      "enabled": true,
+      "settings": {
+        "default_minimum_tokens": "10000"
+      }
+    }
+  },
   "icon_theme": "Bearded Icon Theme",
   "agent": {
+    "default_profile": "write",
     "default_model": {
+      "effort": "high",
       "provider": "copilot_chat",
-      "model": "claude-sonnet-4.5"
+      "model": "gpt-5.2-codex"
     },
     "model_parameters": []
   },
-  "agent_font_size": 19,
+  "agent_ui_font_size": 20,
   "show_edit_predictions": true,
-  "features": {
-    "edit_prediction_provider": "zed"
-  },
   "base_keymap": "VSCode",
   "theme": "One Dark Pro",
   "buffer_font_family": "0xProto Nerd Font Mono",
@@ -77,14 +75,14 @@
       "format_on_save": "on"
     },
     "Python": {
-      "language_servers": ["pyright", "ruff"],
+      "language_servers": ["ty", "!basedpyright", "ruff"],
       "format_on_save": "on",
       "formatter": [
         {
-          "code_actions": {
-            "source.organizeImports.ruff": true,
-            "source.fixAll.ruff": true
-          }
+          "code_action": "source.organizeImports.ruff"
+        },
+        {
+          "code_action": "source.fixAll.ruff"
         },
         {
           "language_server": {

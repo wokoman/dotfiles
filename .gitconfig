@@ -2,8 +2,6 @@
 	path = ~/gitlab/.gitconfig
 [includeIf "gitdir:~/github/"]
 	path = ~/github/.gitconfig
-[includeIf "gitdir:~/keboola/"]
-	path = ~/keboola/.gitconfig
 [core]
 	editor = vim
 	pager = diff-so-fancy | less --tabs=4 -RF

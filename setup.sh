@@ -62,7 +62,6 @@ echo -e "${BLUE}⚙️  Setting up application configs...${NC}"
 
 create_symlink "$DOTFILES_DIR/starship.toml" "$HOME/.config/starship.toml" "Starship prompt"
 create_symlink "$DOTFILES_DIR/.wezterm.lua" "$HOME/.wezterm.lua" "WezTerm terminal"
-create_symlink "$DOTFILES_DIR/zed.json" "$HOME/.config/zed/settings.json" "Zed editor"
 create_symlink "$DOTFILES_DIR/git.plugin.zsh" "$HOME/.config/git.plugin.zsh" "Git plugin"
 
 # Fish shell configuration and plugins
@@ -168,7 +167,7 @@ fi
 echo
 echo -e "${BLUE}📂 Setting up Git directories...${NC}"
 
-for dir in github gitlab keboola; do
+for dir in github gitlab; do
     if [[ ! -d "$HOME/$dir" ]]; then
         echo -e "${YELLOW}📁 Creating directory: ~/$dir${NC}"
         mkdir -p "$HOME/$dir"
@@ -177,23 +176,40 @@ for dir in github gitlab keboola; do
     fi
 done
 
-# Copy GitHub git config template
+# Copy git config templates
 if [[ -f "$DOTFILES_DIR/.gitconfig-github" ]] && [[ ! -f "$HOME/github/.gitconfig" ]]; then
     echo -e "${YELLOW}📋 Copying GitHub git config template${NC}"
     cp "$DOTFILES_DIR/.gitconfig-github" "$HOME/github/.gitconfig"
     echo -e "${YELLOW}⚠️  Please edit ~/github/.gitconfig with your details${NC}"
 fi
 
+if [[ -f "$DOTFILES_DIR/.gitconfig-gitlab" ]] && [[ ! -f "$HOME/gitlab/.gitconfig" ]]; then
+    echo -e "${YELLOW}📋 Copying GitLab git config template${NC}"
+    cp "$DOTFILES_DIR/.gitconfig-gitlab" "$HOME/gitlab/.gitconfig"
+    echo -e "${YELLOW}⚠️  Please edit ~/gitlab/.gitconfig with your details${NC}"
+fi
+
 # Shell setup
 echo
 echo -e "${BLUE}🐚 Shell setup...${NC}"
 
-if [[ "$SHELL" != *"zsh" ]]; then
-    echo -e "${YELLOW}⚠️  Current shell is not zsh ($SHELL)${NC}"
-    echo -e "${YELLOW}💡 To make zsh your default shell, run:${NC}"
-    echo -e "   ${GREEN}chsh -s \$(which zsh)${NC}"
+if command_exists fish; then
+    FISH_PATH="$(which fish)"
+    if [[ "$SHELL" != *"fish" ]]; then
+        echo -e "${YELLOW}⚠️  Current default shell is not fish ($SHELL)${NC}"
+        # Ensure fish is in /etc/shells (required for chsh on macOS)
+        if ! grep -q "$FISH_PATH" /etc/shells 2>/dev/null; then
+            echo -e "${YELLOW}💡 First, add fish to allowed shells:${NC}"
+            echo -e "   ${GREEN}echo $FISH_PATH | sudo tee -a /etc/shells${NC}"
+        fi
+        echo -e "${YELLOW}💡 Then make fish your default shell:${NC}"
+        echo -e "   ${GREEN}chsh -s $FISH_PATH${NC}"
+    else
+        echo -e "${GREEN}✅ Fish is already your default shell${NC}"
+    fi
 else
-    echo -e "${GREEN}✅ Zsh is already your default shell${NC}"
+    echo -e "${YELLOW}⚠️  Fish shell not installed. Install it first:${NC}"
+    echo -e "   ${GREEN}brew install fish${NC}"
 fi
 
 # Prerequisites check
@@ -205,6 +221,8 @@ prerequisites=(
     "starship:Starship prompt"
     "fzf:Fuzzy finder"
     "eza:Modern ls replacement"
+    "diff-so-fancy:Git diff pager (used in .gitconfig)"
+    "fish:Fish shell"
 )
 
 optional_tools=(
@@ -282,11 +300,10 @@ echo
 echo -e "${GREEN}🎉 Setup complete!${NC}"
 echo
 echo -e "${BLUE}📝 Next steps:${NC}"
-echo -e "1. ${YELLOW}Restart your terminal or run: exec zsh${NC}"
+echo -e "1. ${YELLOW}Restart your terminal or run: exec fish${NC}"
 echo -e "2. ${YELLOW}Edit ~/github/.gitconfig with your Git details${NC}"
 echo -e "3. ${YELLOW}Install any missing prerequisites shown above${NC}"
 echo -e "4. ${YELLOW}Install a Nerd Font for proper icon display${NC}"
-echo -e "${YELLOW}⚠️  Please edit ~/github/.gitconfig with your details${NC}"
 
 # Font installation
 echo
@@ -298,9 +315,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
         echo -e "${GREEN}✅ 0xProto Nerd Font already installed${NC}"
     else
         echo -e "${YELLOW}📦 Installing 0xProto Nerd Font via Homebrew...${NC}"
-        if ! brew tap homebrew/cask-fonts &>/dev/null; then
-            echo -e "${RED}❌ Failed to tap homebrew/cask-fonts${NC}"
-        elif brew install --cask font-0xproto-nerd-font; then
+        if brew install --cask font-0xproto-nerd-font; then
             echo -e "${GREEN}✅ 0xProto Nerd Font installed${NC}"
         else
             echo -e "${RED}❌ Failed to install font${NC}"
