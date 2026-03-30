@@ -62,6 +62,7 @@ echo -e "${BLUE}⚙️  Setting up application configs...${NC}"
 
 create_symlink "$DOTFILES_DIR/starship.toml" "$HOME/.config/starship.toml" "Starship prompt"
 create_symlink "$DOTFILES_DIR/.wezterm.lua" "$HOME/.wezterm.lua" "WezTerm terminal"
+create_symlink "$DOTFILES_DIR/zed.json" "$HOME/.config/zed/settings.json" "Zed editor"
 create_symlink "$DOTFILES_DIR/git.plugin.zsh" "$HOME/.config/git.plugin.zsh" "Git plugin"
 
 # Fish shell configuration and plugins
@@ -199,11 +200,18 @@ if command_exists fish; then
         echo -e "${YELLOW}⚠️  Current default shell is not fish ($SHELL)${NC}"
         # Ensure fish is in /etc/shells (required for chsh on macOS)
         if ! grep -q "$FISH_PATH" /etc/shells 2>/dev/null; then
-            echo -e "${YELLOW}💡 First, add fish to allowed shells:${NC}"
-            echo -e "   ${GREEN}echo $FISH_PATH | sudo tee -a /etc/shells${NC}"
+            echo -e "${YELLOW}📝 Adding fish to /etc/shells (requires sudo)...${NC}"
+            echo "$FISH_PATH" | sudo tee -a /etc/shells >/dev/null
+            echo -e "${GREEN}✅ Added $FISH_PATH to /etc/shells${NC}"
         fi
-        echo -e "${YELLOW}💡 Then make fish your default shell:${NC}"
-        echo -e "   ${GREEN}chsh -s $FISH_PATH${NC}"
+        echo -e "${YELLOW}🐟 Setting fish as default shell (requires your password)...${NC}"
+        if chsh -s "$FISH_PATH"; then
+            echo -e "${GREEN}✅ Default shell changed to fish${NC}"
+            echo -e "${YELLOW}💡 Restart your terminal for the change to take effect${NC}"
+        else
+            echo -e "${RED}❌ Failed to change default shell. You can try manually:${NC}"
+            echo -e "   ${GREEN}chsh -s $FISH_PATH${NC}"
+        fi
     else
         echo -e "${GREEN}✅ Fish is already your default shell${NC}"
     fi
