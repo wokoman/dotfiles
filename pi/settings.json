@@ -1,0 +1,18 @@
+{
+  "lastChangelogVersion": "0.68.0",
+  "transport": "auto",
+  "defaultProvider": "anthropic",
+  "defaultModel": "claude-opus-4-6",
+  "defaultThinkingLevel": "medium",
+  "packages": [
+    "npm:@sting8k/pi-vcc",
+    "npm:@plannotator/pi-extension",
+    "npm:@benvargas/pi-claude-code-use",
+    "git:github.com/tomsej/pi-ext",
+    "npm:@mjakl/pi-kagi-search",
+    "git:github.com/MasuRii/pi-rtk-optimizer",
+    "npm:@dreki-gg/pi-context7",
+    "npm:@ruminaider/notion-cli"
+  ],
+  "theme": "monokai"
+}
