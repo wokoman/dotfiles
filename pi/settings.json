@@ -8,7 +8,7 @@
     "npm:@sting8k/pi-vcc",
     "npm:@plannotator/pi-extension",
     "npm:@benvargas/pi-claude-code-use",
-    "git:github.com/tomsej/pi-ext",
+    "git:github.com/wokoman/pi-ext",
     "npm:@mjakl/pi-kagi-search",
     "git:github.com/MasuRii/pi-rtk-optimizer",
     "npm:@dreki-gg/pi-context7",

@@ -16,6 +16,14 @@ Michal is on the **Hlidskjalf** (infrastructure/platform) team at Oddin. Primary
 
 Always use the `gh` CLI for any GitHub-related operations (issues, PRs, CI runs, API queries). Never use web scraping or raw API calls when `gh` can do it. Refer to the `github` skill for usage patterns.
 
+## Jira
+
+Always use the Atlassian CLI (`acli`) for any Jira-related operations (issues, boards, sprints, searches, or when a `oddingg.atlassian.net` URL is referenced). Never use web scraping or raw API calls when `acli` can do it. Refer to the `jira` skill for usage patterns and Context7 docs.
+
+## Notion
+
+Always use `notion-cli` for any Notion-related operations (searching KB pages, fetching content, editing pages, or when a `notion.so` URL is referenced). Never use web scraping or raw API calls when `notion-cli` can do it. Refer to the `notion` skill for usage patterns.
+
 ## Terraform / OpenTofu
 
 When working with Terraform, OpenTofu, or HCL:
