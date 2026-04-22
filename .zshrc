@@ -29,6 +29,9 @@ fi
 ###############################################################################
 # 2. Homebrew (macOS & Linux) and FPATH setup
 ###############################################################################
+export HOMEBREW_NO_ENV_HINTS=1
+export HOMEBREW_NO_INSTALL_CLEANUP=1
+
 # Try existing brew first, then common fallback locations.
 if command -v brew &>/dev/null; then
   eval "$(/usr/bin/env brew shellenv)"
@@ -91,6 +94,7 @@ alias ll='eza -lah'
 alias oldvim='\vim'
 alias pip=pip3
 alias python=python3
+alias grep=rg
 alias tf=terraform
 alias vim='nvim'
 alias snowsql=/Applications/SnowSQL.app/Contents/MacOS/snowsql
