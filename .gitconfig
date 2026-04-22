@@ -2,9 +2,12 @@
 	path = ~/gitlab/.gitconfig
 [includeIf "gitdir:~/github/"]
 	path = ~/github/.gitconfig
+[includeIf "gitdir:~/oddin/"]
+	path = ~/oddin/.gitconfig
 [core]
 	editor = vim
 	pager = diff-so-fancy | less --tabs=4 -RF
+	excludesfile = /Users/michalkozak/.gitignore_global
 [credential]
 	helper = store
 [commit]
