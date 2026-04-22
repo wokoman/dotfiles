@@ -9,6 +9,7 @@ Personal dotfiles for macOS and Linux (Manjaro/Arch).
 - **Editor**: [Zed](https://zed.dev) (install from zed.dev or the App Store)
 - **Prompt**: Starship
 - **Git**: Cross-platform configuration with SSH signing
+- **AI**: [Pi](https://pi.dev) coding agent (settings, global instructions, packages)
 - **Extras**: Neovim, Alacritty, window managers (LeftWM, Qtile)
 
 ## Dependencies
@@ -18,6 +19,7 @@ Personal dotfiles for macOS and Linux (Manjaro/Arch).
 ```bash
 brew install fish starship git fzf eza diff-so-fancy kubectx fisher
 brew install --cask wezterm font-0xproto-nerd-font
+brew install pi-coding-agent  # Pi coding agent
 # Zsh-only (optional)
 brew install zsh-autosuggestions zsh-syntax-highlighting
 ```
@@ -52,11 +54,17 @@ mkdir -p ~/.config/fish
 ln -sf ~/dotfiles/.zshrc ~/.zshrc
 ln -sf ~/dotfiles/config.fish ~/.config/fish/config.fish
 ln -sf ~/dotfiles/.gitconfig ~/.gitconfig
+ln -sf ~/dotfiles/.gitignore_global ~/.gitignore_global
 
 # Apps
 ln -sf ~/dotfiles/starship.toml ~/.config/starship.toml
 ln -sf ~/dotfiles/.wezterm.lua ~/.wezterm.lua
 ln -sf ~/dotfiles/git.plugin.zsh ~/.config/git.plugin.zsh
+
+# Pi coding agent
+mkdir -p ~/.pi/agent
+ln -sf ~/dotfiles/pi/settings.json ~/.pi/agent/settings.json
+ln -sf ~/dotfiles/pi/AGENTS.md ~/.pi/agent/AGENTS.md
 
 # Optional
 ln -sf ~/dotfiles/.alacritty.yml ~/.alacritty.yml
@@ -113,6 +121,29 @@ cp ~/dotfiles/.gitconfig-github ~/github/.gitconfig
 ```
 
 The `.gitconfig` uses `includeIf` to load directory-specific configs, so repos cloned into `~/github/` or `~/gitlab/` automatically pick up the right identity.
+
+## Pi (coding agent)
+
+Configuration for [pi](https://pi.dev), the terminal-based coding agent.
+
+```bash
+mkdir -p ~/.pi/agent
+ln -sf ~/dotfiles/pi/settings.json ~/.pi/agent/settings.json
+ln -sf ~/dotfiles/pi/AGENTS.md ~/.pi/agent/AGENTS.md
+```
+
+After linking, install packages listed in `settings.json`:
+
+```bash
+pi install npm:@sting8k/pi-vcc
+pi install npm:@plannotator/pi-extension
+pi install npm:@benvargas/pi-claude-code-use
+pi install git:github.com/tomsej/pi-ext
+pi install npm:@mjakl/pi-kagi-search
+pi install git:github.com/MasuRii/pi-rtk-optimizer
+```
+
+Credentials (`auth.json`, `kagi-search.json`) must be set up manually on each machine.
 
 ## Features
 
