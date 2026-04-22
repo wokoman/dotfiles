@@ -7,13 +7,24 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
+  "agent_servers": {
+    "gemini": {
+      "type": "registry"
+    },
+    "github-copilot-cli": {
+      "type": "registry"
+    },
+    "claude-acp": {
+      "type": "registry"
+    }
+  },
   "colorize_brackets": true,
   "vim_mode": true,
   "vim": {
     "toggle_relative_line_numbers": true
   },
   "edit_predictions": {
-    "provider": "zed",
+    "provider": "copilot",
     "mode": "subtle",
     "copilot": {
       "proxy": null,
@@ -29,9 +40,7 @@
     },
     "mcp-server-github": {
       "enabled": true,
-      "settings": {
-        "github_personal_access_token": ""
-      }
+      "settings": {}
     },
     "mcp-server-context7": {
       "enabled": true,
@@ -42,11 +51,19 @@
   },
   "icon_theme": "Bearded Icon Theme",
   "agent": {
+    "tool_permissions": {
+      "tools": {
+        "fetch": {
+          "default": "allow"
+        }
+      }
+    },
     "default_profile": "write",
     "default_model": {
-      "effort": "high",
+      "enable_thinking": true,
+      "effort": "medium",
       "provider": "copilot_chat",
-      "model": "gpt-5.2-codex"
+      "model": "claude-sonnet-4.6"
     },
     "model_parameters": []
   },
