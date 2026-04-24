@@ -21,3 +21,5 @@ command -q pyenv && pyenv init - | source
 command -q fzf && fzf --fish | source
 
 command -q starship && starship init fish | source
+
+command -q zoxide && zoxide init fish | source

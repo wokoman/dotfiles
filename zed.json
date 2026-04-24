@@ -8,7 +8,7 @@
 // from the command palette or from `Zed` application menu.
 {
   "agent_servers": {
-    "gemini": {
+    "pi-acp": {
       "type": "registry"
     },
     "github-copilot-cli": {

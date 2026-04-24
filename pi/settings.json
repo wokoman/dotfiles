@@ -1,8 +1,8 @@
 {
-  "lastChangelogVersion": "0.68.0",
+  "lastChangelogVersion": "0.68.1",
   "transport": "auto",
   "defaultProvider": "anthropic",
-  "defaultModel": "claude-opus-4-6",
+  "defaultModel": "claude-sonnet-4-6",
   "defaultThinkingLevel": "medium",
   "packages": [
     "npm:@sting8k/pi-vcc",

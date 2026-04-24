@@ -1,0 +1,209 @@
+{
+  "attribution": {
+    "pr": ""
+  },
+  "effortLevel": "medium",
+  "enabledPlugins": {
+    "ast-grep@ast-grep-marketplace": true,
+    "context7@claude-plugins-official": true,
+    "hlidskjalf@hlidskjalf-kit": false,
+    "plannotator@plannotator": false,
+    "superpowers@claude-plugins-official": true,
+    "terraform-skill@antonbabenko": true,
+    "voltagent-infra@voltagent-subagents": true
+  },
+  "env": {
+    "GREP": "rg"
+  },
+  "extraKnownMarketplaces": {
+    "antonbabenko": {
+      "source": {
+        "repo": "antonbabenko/terraform-skill",
+        "source": "github"
+      }
+    },
+    "ast-grep-marketplace": {
+      "source": {
+        "repo": "ast-grep/agent-skill",
+        "source": "github"
+      }
+    },
+    "hlidskjalf-kit": {
+      "source": {
+        "path": "/Users/michalkozak/oddin/hlidskjalf-claude-kit",
+        "source": "directory"
+      }
+    },
+    "mempalace": {
+      "source": {
+        "repo": "MemPalace/mempalace",
+        "source": "github"
+      }
+    },
+    "plannotator": {
+      "source": {
+        "repo": "backnotprop/plannotator",
+        "source": "github"
+      }
+    },
+    "voltagent-subagents": {
+      "source": {
+        "repo": "VoltAgent/awesome-claude-code-subagents",
+        "source": "github"
+      }
+    }
+  },
+  "hooks": {
+    "ElicitationResult": [
+      {
+        "hooks": [
+          {
+            "command": "sh -c '[ -n \"$AOE_INSTANCE_ID\" ] || exit 0; mkdir -p /tmp/aoe-hooks/$AOE_INSTANCE_ID && printf running > /tmp/aoe-hooks/$AOE_INSTANCE_ID/status'",
+            "type": "command"
+          }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "hooks": [
+          {
+            "command": "sh -c '[ -n \"$AOE_INSTANCE_ID\" ] || exit 0; mkdir -p /tmp/aoe-hooks/$AOE_INSTANCE_ID && printf waiting > /tmp/aoe-hooks/$AOE_INSTANCE_ID/status'",
+            "type": "command"
+          }
+        ],
+        "matcher": "permission_prompt|elicitation_dialog"
+      }
+    ],
+    "PostToolUse": [
+      {
+        "hooks": [
+          {
+            "command": "case \"$CLAUDE_FILE_PATH\" in *.tf|*.tfvars) command -v terraform >/dev/null && terraform fmt \"$CLAUDE_FILE_PATH\" 2>/dev/null ;; *.hcl) command -v terragrunt >/dev/null && terragrunt hclfmt \"$CLAUDE_FILE_PATH\" 2>/dev/null ;; *.py) command -v ruff >/dev/null && ruff format \"$CLAUDE_FILE_PATH\" 2>/dev/null ;; esac; true",
+            "type": "command"
+          }
+        ],
+        "matcher": "Write|Edit"
+      }
+    ],
+    "PreToolUse": [
+      {
+        "hooks": [
+          {
+            "command": "/Users/michalkozak/.claude/hooks/rtk-rewrite.sh",
+            "type": "command"
+          }
+        ],
+        "matcher": "Bash"
+      },
+      {
+        "hooks": [
+          {
+            "command": "sh -c '[ -n \"$AOE_INSTANCE_ID\" ] || exit 0; mkdir -p /tmp/aoe-hooks/$AOE_INSTANCE_ID && printf running > /tmp/aoe-hooks/$AOE_INSTANCE_ID/status'",
+            "type": "command"
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "command": "echo \"Session started at $(date). Branch: $(git branch --show-current 2>/dev/null || echo 'N/A'). Last commit: $(git log --oneline -1 2>/dev/null || echo 'N/A').\"",
+            "type": "command"
+          }
+        ],
+        "matcher": ""
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "command": "sh -c '[ -n \"$AOE_INSTANCE_ID\" ] || exit 0; mkdir -p /tmp/aoe-hooks/$AOE_INSTANCE_ID && printf idle > /tmp/aoe-hooks/$AOE_INSTANCE_ID/status'",
+            "type": "command"
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "command": "sh -c '[ -n \"$AOE_INSTANCE_ID\" ] || exit 0; mkdir -p /tmp/aoe-hooks/$AOE_INSTANCE_ID && printf running > /tmp/aoe-hooks/$AOE_INSTANCE_ID/status'",
+            "type": "command"
+          }
+        ]
+      }
+    ]
+  },
+  "model": "sonnet",
+  "permissions": {
+    "allow": [
+      "Bash(git fetch:*)",
+      "Bash(git worktree list:*)",
+      "Bash(gh pr view:*)",
+      "Bash(gh pr list:*)",
+      "Bash(gh pr diff:*)",
+      "Bash(gh pr status:*)",
+      "Bash(gh pr checks:*)",
+      "Bash(gh issue view:*)",
+      "Bash(gh issue list:*)",
+      "Bash(gh run list:*)",
+      "Bash(gh run view:*)",
+      "Bash(gh api repos/*/pulls/*/comments)",
+      "Bash(terraform plan:*)",
+      "Bash(terraform validate:*)",
+      "Bash(terraform show:*)",
+      "Bash(terraform output:*)",
+      "Bash(terraform state list:*)",
+      "Bash(terraform state show:*)",
+      "Bash(terraform version:*)",
+      "Bash(terraform providers:*)",
+      "Bash(terraform graph:*)",
+      "Bash(terraform fmt -check:*)",
+      "Bash(terraform fmt -diff:*)",
+      "Bash(terragrunt plan:*)",
+      "Bash(terragrunt validate:*)",
+      "Bash(terragrunt show:*)",
+      "Bash(terragrunt output:*)",
+      "Bash(terragrunt run-all plan:*)",
+      "Bash(terragrunt run-all validate:*)",
+      "Bash(tflint:*)",
+      "Bash(tfsec:*)",
+      "Bash(checkov:*)",
+      "Bash(terraform-docs:*)",
+      "Bash(python --version)",
+      "Bash(python3 --version)",
+      "Bash(uv --version)",
+      "Bash(uv pip list:*)",
+      "Bash(uv pip show:*)",
+      "Bash(uv pip freeze:*)",
+      "Bash(uv tree:*)",
+      "Bash(uv export:*)",
+      "Bash(uv lock --check:*)",
+      "Bash(uv lock --locked:*)",
+      "Bash(uv run pytest:*)",
+      "Bash(uv run ruff check:*)",
+      "Bash(uv run mypy:*)",
+      "Bash(uv run ty:*)",
+      "Bash(ruff check:*)",
+      "Bash(ruff format --check:*)",
+      "Bash(ty check:*)",
+      "Bash(mypy:*)",
+      "Bash(pyright:*)",
+      "Bash(pytest:*)",
+      "Bash(yamllint:*)",
+      "Bash(jq:*)"
+    ],
+    "deny": [
+      "Bash(xargs:*)",
+      "Bash(sudo:*)",
+      "Bash(rm -rf:*)"
+    ]
+  },
+  "statusLine": {
+    "command": "python3 /Users/michalkozak/.claude/statusline.py",
+    "type": "command"
+  }
+}
