@@ -6,18 +6,18 @@ Personal dotfiles for macOS and Linux (Manjaro/Arch).
 
 - **Shell**: Fish (default) and Zsh (shortcuts, completions, vi keybindings)
 - **Terminal**: WezTerm
-- **Editor**: [Zed](https://zed.dev) (install from zed.dev or the App Store)
+- **Editor**: [Zed](https://zed.dev) (install from zed.dev or the App Store), Neovim
 - **Prompt**: Starship
 - **Git**: Cross-platform configuration with SSH signing
 - **AI**: [Pi](https://pi.dev) coding agent (settings, global instructions, packages)
-- **Extras**: Neovim, Alacritty, window managers (LeftWM, Qtile)
+- **Extras**: Alacritty, window managers (LeftWM, Qtile)
 
 ## Dependencies
 
 #### macOS
 
 ```bash
-brew install fish starship git fzf eza diff-so-fancy kubectx fisher
+brew install fish starship git fzf eza diff-so-fancy kubectx fisher neovim
 brew install --cask wezterm font-0xproto-nerd-font
 brew install pi-coding-agent  # Pi coding agent
 # Zsh-only (optional)
@@ -69,6 +69,14 @@ ln -sf ~/dotfiles/pi/AGENTS.md ~/.pi/agent/AGENTS.md
 # Optional
 ln -sf ~/dotfiles/.alacritty.yml ~/.alacritty.yml
 ln -sf ~/dotfiles/nvim ~/.config/nvim
+
+# Neovim setup
+# 1. Install vim-plug
+curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+# 2. Install plugins
+nvim --headless +PlugInstall +qall
+
 ln -sf ~/dotfiles/leftwm ~/.config/leftwm      # Linux
 ln -sf ~/dotfiles/qtile ~/.config/qtile        # Linux
 ```

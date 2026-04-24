@@ -148,6 +148,21 @@ fi
 
 if [[ -d "$DOTFILES_DIR/nvim" ]]; then
     create_symlink "$DOTFILES_DIR/nvim" "$HOME/.config/nvim" "Neovim configuration"
+
+    # Ensure vim-plug is installed
+    if [[ ! -f "$HOME/.local/share/nvim/site/autoload/plug.vim" ]]; then
+        echo -e "${YELLOW}🎣 Installing vim-plug...${NC}"
+        curl -fLo "$HOME/.local/share/nvim/site/autoload/plug.vim" --create-dirs \
+            https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    fi
+
+    # Install plugins
+    echo -e "${BLUE}🔌 Installing Neovim plugins...${NC}"
+    if nvim --headless +PlugInstall +qall; then
+        echo -e "${GREEN}✅ Neovim plugins installed${NC}"
+    else
+        echo -e "${RED}❌ Failed to install Neovim plugins. Please run 'nvim +PlugInstall' manually.${NC}"
+    fi
 fi
 
 # Linux-specific window managers
