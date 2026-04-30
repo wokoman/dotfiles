@@ -69,7 +69,6 @@
       "Bash(rm -rf:*)"
     ]
   },
-  "model": "sonnet",
   "hooks": {
     "ElicitationResult": [
       {
@@ -205,5 +204,5 @@
       }
     }
   },
-  "effortLevel": "medium"
+  "effortLevel": "xhigh"
 }

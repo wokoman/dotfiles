@@ -90,11 +90,39 @@
   "buffer_font_size": 18,
   "show_whitespaces": "boundary",
   "format_on_save": "off",
+  "seed_search_query_from_cursor": "always",
+  "confirm_quit": true,
+  "cursor_blink": false,
+  "autosave": "on_focus_change",
+  "current_line_highlight": "all",
+  "inlay_hints": {
+    "enabled": true,
+    "show_type_hints": true,
+    "show_parameter_hints": true,
+    "toggle_on_modifiers_press": { "alt": true }
+  },
+  "git": {
+    "inline_blame": {
+      "enabled": true,
+      "show_commit_summary": true,
+      "delay_ms": 600
+    }
+  },
+  "scrollbar": {
+    "show": "auto",
+    "git_diff": true,
+    "search_results": true,
+    "diagnostics": "all"
+  },
+  "active_pane_modifiers": {
+    "inactive_opacity": 0.85
+  },
   "terminal": {
     "dock": "bottom",
     "font_family": "0xProto Nerd Font Mono",
     "font_size": 18,
-    "line_height": "standard"
+    "line_height": "standard",
+    "copy_on_select": true
   },
   "minimap": {
     "show": "auto",
